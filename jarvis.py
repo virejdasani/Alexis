@@ -9,15 +9,16 @@ finished = False
 helloResponse = ["Hello to you too!", "Hey!", "Hola amigo", "Good to see you!"] 
 howAreYouResponse = ["Just doing my thing!", "I am great!", "Amazing!", "Feeling awesome!"]
 
+print(datetime.datetime.now().hour)
 
 # MAIN LOOP
 while finished == False:
+
     # Function to greet differently depending on the time of day
     def greet():
+
         # Get the current time 
         hour = datetime.datetime.now().hour
-
-        # Check what part of the 24 hrs it is
 
         # 12am to 11:59am
         if hour >= 0 and hour < 12 :
@@ -28,15 +29,15 @@ while finished == False:
             greeting = "Good Afternoon, \nEnter Command: "
 
         # 6pm to 11:59pm 
-        if hour >= 18  and hour < 0:
-            greeting = "Good Afternoon, \nEnter Command: "  
+        if hour >= 18  and hour != 0:
+            greeting = "Good Evening, \nEnter Command: "  
+       
+        return greeting    
 
-        return greeting
-
-            
 
     # Take input from user    
     command = input(greet()).lower()
+
 
 
     # Add possible user commands here
@@ -47,25 +48,9 @@ while finished == False:
         print(random.choice(howAreYouResponse))
 
 
-
-
     elif "bye" in command:
         print("Goodbye")
         finished = True    
 
     else:
-        print("Sorry, I don't know that one")    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        print("Sorry, I don't know that one") 
