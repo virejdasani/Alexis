@@ -5,10 +5,11 @@ import random
 finished = False
 
 
-# Lists
-helloResponse = ["Hello to you too!", "Hey!", "Hola amigo", "Good to see you!"] 
-howAreYouResponse = ["Just doing my thing!", "I am great!", "Amazing!", "Feeling awesome!"]
-
+# LISTS
+# Responses
+helloResponse = ["\033[34mHello to you too!", "\033[34mHey!", "\033[34mHola amigo", "\033[34mGood to see you!"] 
+howAreYouResponse = ["\033[34mJust doing my thing!", "\033[34mI am great!", "\033[34mAmazing!", "\033[34mFeeling awesome!"]
+        
 
 # Function to greet differently depending on the time of day
 def greet():
@@ -16,18 +17,18 @@ def greet():
     # Get the current time 
     hour = datetime.datetime.now().hour
 
-    # "\033[1;32;40m" shows the string in green in the terminal
+    # "\033[34m" shows the string in orange in the terminal
     # 12am to 11:59am
     if hour >= 0 and hour < 12 :
-        greeting = "\033[1;32;40m\nGood Moning, "
+        greeting = "\033[34m\nGood Moning, "
 
     # 12pm to 5:59pm 
     if hour >= 12 and hour < 18:
-        greeting = "\033[1;32;40m\nGood Afternoon, "
+        greeting = "\033[34m\nGood Afternoon, "
 
     # 6pm to 11:59pm 
     if hour >= 18  and hour != 0:
-        greeting = "\033[1;32;40m\nGood Evening, "  
+        greeting = "\033[34m\nGood Evening, "  
     
     return greeting
 
@@ -37,8 +38,8 @@ print(greet())
 # MAIN LOOP
 while finished == False:
 
-    # This will prompt user for input in green color 
-    print("\033[1;32;40m\nEnter Command: ")
+    # This will prompt user for input in green color and not go to the next line
+    print("\n\033[1;32;40mEnter Command: ", end="")
     # Take input from user in yellow color   
     command = input("\033[33m").lower()
 
