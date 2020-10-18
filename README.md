@@ -1,4 +1,4 @@
-# Jarvis- Your Robot Butler
+# Jarvis- Your Personal Robot Butler
 
 Jarvis is an open source Personal Assistant that works on the command line.
 Right now, in its early stages of developmet, it can't do much except open websites and tell you how it's doing.
