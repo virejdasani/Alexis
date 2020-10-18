@@ -6,8 +6,8 @@ Right now, in its early stages of developmet, it can't do much except open websi
 The final goal for Jarvis is to do everything from send emails to telling you a joke.
 
 ## Get Started
-Clone the repo and simply run python jarvis.py for mac and windows and
-python3 jarvis.py for linux.
+Clone the repo and simply run `python jarvis.py` for mac and windows or
+`python3 jarvis.py` for linux.
 Type the command "help" to view all commands when jarvis asks to enter command
 
 ## Contributing
