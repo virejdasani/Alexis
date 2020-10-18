@@ -117,7 +117,7 @@ while finished == False:
     
     elif "open gmail" in command or "get gmail" in command:
         print(random.choice(agreeResponse))
-        webbrowser.open('www.gmail.com')    
+        webbrowser.open('mail.google.com')    
 
     elif "open github" in command or "get github" in command or "get gh" in command or "open gh" in command:
         print(random.choice(agreeResponse))
