@@ -2,8 +2,8 @@
 ![JARVIS](https://github.com/virejdasani/Jarvis/blob/master/res/jarvisimg.jpg?raw=true)
 
 Jarvis is an open source Personal Assistant that works on the command line.
-Right now, in its early stages of developmet, it can't do much except open websites and tell you how it's doing.
-The final goal for Jarvis is to do everything from send emails to telling you a joke.
+Right now, in its early stages of development, it can't do much except open websites and tell you how it's doing.
+The final goal for Jarvis is to do everything from sending emails to telling you a joke.
 
 ## Get Started
 Clone the repo and simply run `python jarvis.py` for mac and windows or
