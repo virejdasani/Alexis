@@ -1,5 +1,7 @@
 # JARVIS - YOUR PERSONAL ROBOT BUTLER
 
+# TODO add functionality so any website can be opened with get or open keyword add wikipedia functionality
+
 # RULES
 '''
 \033[34m (Orange) for all responses
@@ -7,7 +9,6 @@
 
 KEYWORDS - "get" and "open" are reserved to open websites in the browser
 '''
-
 
 import datetime
 import random
@@ -23,6 +24,42 @@ howAreYouResponse = ["\033[34mJust doing my thing!", "\033[34mI am great!", "\03
 agreeResponse = ["\033[34mSure thing", "\033[34mOkay", "\033[34mFor sure", "\033[34mAlright"]        
 unrecognisedCommandResponse = ["\033[34mSorry, I don't know that", "\033[34mI'm not too sure about that one", "\033[34mHmm, I'm not sure I know how to do that yet"]
 exitResponse = ["\033[34mGoodbye", "\033[34mBye Bye!", "\033[34mSee you soon", "\033[34mCatch you later!"]
+allCommands = '''\033[33m
+------------------------------------------------------------------------------
+\033[34mGENERAL\033[33m
+    hi
+    hey
+    hello
+    how are you
+    how r u
+    hows it going
+    whats up
+    who are you 
+    what are you\033[34m
+------------------------------------------------------------------------------
+WEBSITES
+# prefix name of site with open or get\033[33m
+    google
+    youtube/yt
+    spotify
+    github/gh
+    gmail
+    tempmail/fake email/temporary mail/tmpmail
+    netflix
+    amazon\033[34m
+------------------------------------------------------------------------------
+EXIT\033[33m
+    bye
+    abort
+    exit\033[34m
+------------------------------------------------------------------------------
+HELP\033[33m
+    help
+    all commands\033[34m
+------------------------------------------------------------------------------
+'''
+
+
 # Function to greet differently depending on the time of day
 def greet():
 
@@ -61,7 +98,7 @@ while finished == False:
     if "hi" in command or "hey" in command or "hello" in command:
         print(random.choice(helloResponse))
 
-    elif "how are you" in command or "hows it going" in command or "how's it going" in command or "whats up" in command or "what's up" in command:
+    elif "how are you" in command or "hows it going" in command or "how's it going" in command or "whats up" in command or "what's up" in command or "how r u" in command:
         print(random.choice(howAreYouResponse)) 
 
     elif "who are you" in command or "what are you" in command:
@@ -103,6 +140,10 @@ while finished == False:
         webbrowser.open('https://temp-mail.org/en/')
 
 
+# HELP
+    elif "help" in command or "all commands" in command:
+        print(allCommands)
+
 # EXIT
     elif "bye" in command or "goodbye" in command or "abort" in command or "exit" in command:
         print(random.choice(exitResponse))
@@ -115,34 +156,3 @@ while finished == False:
 
 
 
-
-'''
-COMMANDS:
-------------------------------------------------------------------------------
-# GENERAL
-hi
-hey
-hello
-how are you
-hows it going
-whats up
-who are you 
-what are you
-------------------------------------------------------------------------------
-# WEBSITES
-# prefix name of site with open or get
-google
-youtube/yt
-spotify
-github/gh
-gmail
-tempmail/fake email/temporary mail/tmpmail
-netflix
-amazon
-------------------------------------------------------------------------------
-# EXIT
-bye
-abort
-exit
-------------------------------------------------------------------------------
-'''
