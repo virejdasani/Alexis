@@ -4,7 +4,7 @@
 
 # RULES
 '''
-\033[34m (Orange) for all responses
+\033[36m (Blue) for all responses
 \033[1;32;40m (Green) for 'Enter Command: ' phrase
 
 KEYWORDS - "get" and "open" are reserved to open websites in the browser
@@ -18,15 +18,14 @@ finished = False
 
 
 # LISTS
-# Responses
-helloResponse = ["\033[34mHello to you too!", "\033[34mHey!", "\033[34mHola amigo", "\033[34mGood to see you!"] 
-howAreYouResponse = ["\033[34mJust doing my thing!", "\033[34mI am great!", "\033[34mAmazing!", "\033[34mFeeling awesome!"]
-agreeResponse = ["\033[34mSure thing", "\033[34mOkay", "\033[34mFor sure", "\033[34mAlright"]        
-unrecognisedCommandResponse = ["\033[34mSorry, I don't know that", "\033[34mI'm not too sure about that one", "\033[34mHmm, I'm not sure I know how to do that yet"]
-exitResponse = ["\033[34mGoodbye", "\033[34mBye Bye!", "\033[34mSee you soon", "\033[34mCatch you later!"]
+helloResponse = ["\033[36mHello to you too!", "\033[36mHey!", "\033[36mHola amigo", "\033[36mGood to see you!"] 
+howAreYouResponse = ["\033[36mJust doing my thing!", "\033[36mI am great!", "\033[36mAmazing!", "\033[36mFeeling awesome!"]
+agreeResponse = ["\033[36mSure thing", "\033[36mOkay", "\033[36mFor sure", "\033[36mAlright"]        
+unrecognisedCommandResponse = ["\033[36mSorry, I don't know that", "\033[36mI'm not too sure about that one", "\033[36mHmm, I'm not sure I know how to do that yet"]
+exitResponse = ["\033[36mGoodbye", "\033[36mBye Bye!", "\033[36mSee you soon", "\033[36mCatch you later!"]
 allCommands = '''\033[33m
 ------------------------------------------------------------------------------
-\033[34mGENERAL\033[33m
+\033[36mGENERAL\033[33m
     hi
     hey
     hello
@@ -35,7 +34,7 @@ allCommands = '''\033[33m
     hows it going
     whats up
     who are you 
-    what are you\033[34m
+    what are you\033[36m
 ------------------------------------------------------------------------------
 WEBSITES
 # prefix name of site with open or get\033[33m
@@ -46,16 +45,16 @@ WEBSITES
     gmail
     tempmail/fake email/temporary mail/tmpmail
     netflix
-    amazon\033[34m
+    amazon\033[36m
 ------------------------------------------------------------------------------
 EXIT\033[33m
     bye
     abort
-    exit\033[34m
+    exit\033[36m
 ------------------------------------------------------------------------------
 HELP\033[33m
     help
-    all commands\033[34m
+    all commands\033[36m
 ------------------------------------------------------------------------------
 '''
 
@@ -66,18 +65,18 @@ def greet():
     # Get the current time 
     hour = datetime.datetime.now().hour
 
-    # "\033[34m" shows the string in orange in the terminal
+    # "\033[36m" shows the string in Cyan in the terminal
     # 12am to 11:59am
     if hour >= 0 and hour < 12 :
-        greeting = "\033[34m\nGood Moning, I am JARVIS, your personal robot butler "
+        greeting = "\033[36m\nGood Moning, I am JARVIS, your personal robot butler "
 
     # 12pm to 5:59pm 
     if hour >= 12 and hour < 18:
-        greeting = "\033[34m\nGood Afternoon, I am JARVIS, your personal robot butler "
+        greeting = "\033[36m\nGood Afternoon, I am JARVIS, your personal robot butler "
 
     # 6pm to 11:59pm 
     if hour >= 18  and hour != 0:
-        greeting = "\033[34m\nGood Evening, I am JARVIS, your personal robot butler "  
+        greeting = "\033[36m\nGood Evening, I am JARVIS, your personal robot butler "  
     
     return greeting
 
@@ -102,7 +101,7 @@ while finished == False:
         print(random.choice(howAreYouResponse)) 
 
     elif "who are you" in command or "what are you" in command:
-        print("\033[34mI am JARVIS, your personal robot butler!") 
+        print("\033[36mI am JARVIS, your personal robot butler!") 
 
 
 # WEB BASED
