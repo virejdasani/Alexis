@@ -7,12 +7,14 @@
 \033[36m (Blue) for all responses
 \033[1;32;40m (Green) for 'Enter Command: ' phrase
 
-KEYWORDS - "get" and "open" are reserved to open websites in the browser
+KEYWORDS - "open" is reserved to open websites in the browser
 '''
 
 import datetime
 import random
 import webbrowser
+import wikipedia
+
 
 finished = False
 
@@ -37,12 +39,13 @@ allCommands = '''\033[33m
     what are you\033[36m
 ------------------------------------------------------------------------------
 WEBSITES
-# prefix name of site with open or get\033[33m
+# prefix name of site with open\033[33m
     google
     youtube/yt
     spotify
     github/gh
     gmail
+    outlook/hotmail
     tempmail/fake email/temporary mail/tmpmail
     netflix
     amazon\033[36m
@@ -106,42 +109,57 @@ while finished == False:
 
 # WEB BASED
     # Open in browser
-    elif "open youtube" in command or "get youtube" in command or "open yt" in command or "get yt" in command:
-        print(random.choice(agreeResponse))
-        webbrowser.open('www.youtube.com')
+    elif "open " in command:
+        if "youtube" in command or "yt" in command:
+            print(random.choice(agreeResponse))
+            webbrowser.open('www.youtube.com')
 
-    elif "open google" in command or "get google" in command:
-        print(random.choice(agreeResponse))
-        webbrowser.open('www.google.com')
-    
-    elif "open gmail" in command or "get gmail" in command:
-        print(random.choice(agreeResponse))
-        webbrowser.open('mail.google.com')    
-
-    elif "open outlook" in command or "get outlook" in command or "open hotmail" in command or "get hotmail" in command:
-        print(random.choice(agreeResponse))
-        webbrowser.open('outlook.live.com')
+        elif "google" in command:
+            print(random.choice(agreeResponse))
+            webbrowser.open('www.google.com')
         
-    elif "open github" in command or "get github" in command or "get gh" in command or "open gh" in command:
-        print(random.choice(agreeResponse))
-        webbrowser.open('www.github.com')    
-        
-    elif "open netflix" in command or "get netflix" in command:
-        print(random.choice(agreeResponse))
-        webbrowser.open('www.netflix.com')    
+        elif "gmail" in command:
+            print(random.choice(agreeResponse))
+            webbrowser.open('mail.google.com')    
 
-    elif "open spotify" in command or "get spotify" in command:
-        print(random.choice(agreeResponse))
-        webbrowser.open('www.spotify.com')
+        elif "outlook" in command or "hotmail" in command:
+            print(random.choice(agreeResponse))
+            webbrowser.open('outlook.live.com')
+            
+        elif "github" in command or "gh" in command:
+            print(random.choice(agreeResponse))
+            webbrowser.open('www.github.com')    
+            
+        elif "netflix" in command:
+            print(random.choice(agreeResponse))
+            webbrowser.open('www.netflix.com')    
 
-    elif "open amazon" in command or "get amazon" in command:
-        print(random.choice(agreeResponse))
-        webbrowser.open('www.amazon.com')             
+        elif "spotify" in command:
+            print(random.choice(agreeResponse))
+            webbrowser.open('www.spotify.com')
 
-    elif "open temp mail" in command or "get fake email" in command or " open temporary mail" in command or "get tempmail" in command or "open tempmail" in command or "get tmpmail" in command or "open tmpmail" in command:
-        print(random.choice(agreeResponse))
-        webbrowser.open('https://temp-mail.org/en/')
+        elif "amazon" in command:
+            print(random.choice(agreeResponse))
+            webbrowser.open('www.amazon.com')             
 
+        elif "temp mail" in command or "fake email" in command or " temporary mail" in command or "tempmail" in command or "tempmail" in command or "tmpmail" in command or "tmpmail" in command:
+            print(random.choice(agreeResponse))
+            webbrowser.open('www.temp-mail.org/en/')
+
+        else:
+            if "www." in command or ".com" in command or ".in" in command or ".co" in command:
+                webbrowser.open(command[5:])
+            else:
+                print("This is not on our website list")
+                print("You can type 'open' followed by the url")
+                
+
+    elif "search " in command:
+        try:
+            searchTerm = command[7:]        
+            print(wikipedia.summary(searchTerm))
+        except:
+            webbrowser.open('https://www.google.com/search?q=' + command[7:])
 
 # HELP
     elif "help" in command or "all commands" in command:
