@@ -15,5 +15,5 @@ Type the command "help" to view all commands when jarvis asks to enter command
 - PR's are accepted!!
 - Fork the repo, work on it and make a PR. We will review it and get in touch within the day.
 - Don't forget to document what you have coded/made changes to, using comments.
-- Even if your contribution is as little as changing a letter in a word, WE WOULD APPRECIATE IT. 
+- We welcome all commits, big or small!
 - Your PR's will count towards your Hacktoberfest!
