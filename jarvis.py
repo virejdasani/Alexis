@@ -119,6 +119,10 @@ while finished == False:
         print(random.choice(agreeResponse))
         webbrowser.open('mail.google.com')    
 
+    elif "open outlook" in command or "get outlook" in command:
+        print(random.choice(agreeResponse))
+        webbrowser.open('outlook.live.com')
+        
     elif "open github" in command or "get github" in command or "get gh" in command or "open gh" in command:
         print(random.choice(agreeResponse))
         webbrowser.open('www.github.com')    
