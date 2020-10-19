@@ -146,18 +146,21 @@ while finished == False:
             print(random.choice(agreeResponse))
             webbrowser.open('www.temp-mail.org/en/')
 
+        # This is to open websites that are not in the list
         else:
             if "www." in command or ".com" in command or ".in" in command or ".co" in command:
+                # It will open the url when command is: open {www.URL.com/co/in/etc}
                 webbrowser.open(command[5:])
             else:
                 print("This is not on our website list")
                 print("You can type 'open' followed by the url")
                 
-
+    # Wikipedia
     elif "search " in command:
         try:
             searchTerm = command[7:]        
             print(wikipedia.summary(searchTerm))
+        # If not found on wikipedia, it will do a google search for the command 
         except:
             webbrowser.open('https://www.google.com/search?q=' + command[7:])
 
