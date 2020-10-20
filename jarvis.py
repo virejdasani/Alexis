@@ -1,15 +1,16 @@
 # JARVIS - YOUR PERSONAL ROBOT BUTLER
 
 
-
-# TODO add functionality so any website can be opened with get or open keyword add wikipedia functionality
-
 # RULES
 '''
 \033[36m (Blue) for all responses
 \033[1;32;40m (Green) for 'Enter Command: ' phrase
 
-KEYWORDS - "open" is reserved to open websites in the browser
+KEYWORDS:
+"open" is reserved to open websites in the browser
+"search" is for wikipedia
+"google" is to google search
+
 '''
 
 import datetime
@@ -27,8 +28,6 @@ howAreYouResponse = ["\033[36mJust doing my thing!", "\033[36mI am great!", "\03
 agreeResponse = ["\033[36mSure thing", "\033[36mOkay", "\033[36mFor sure", "\033[36mAlright"]        
 unrecognisedCommandResponse = ["\033[36mSorry, I don't know that", "\033[36mI'm not too sure about that one", "\033[36mHmm, I'm not sure I know how to do that yet"]
 exitResponse = ["\033[36mGoodbye", "\033[36mBye Bye!", "\033[36mSee you soon", "\033[36mCatch you later!"]
-
-
 
 
 # Function to greet differently depending on the time of day
@@ -143,6 +142,7 @@ while finished == False:
             webbrowser.open('https://www.google.com/search?q=' + command[7:])
 
 # HELP
+    # This will print everything in the file: AllCommands.txt
     elif "help" in command or "all commands" in command:
         with open('AllCommands.txt', 'r') as f:
             print(f.read())
@@ -153,7 +153,7 @@ while finished == False:
         finished = True    
 # UNRECOGNISED COMMAND
     else:
-        print("Sorry, I don't know that one") 
+        print(f"{random.choice(unrecognisedCommandResponse)}. Type 'help' to see the list of commands") 
 
 
 
