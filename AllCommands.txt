@@ -22,7 +22,7 @@ WEBSITES
     outlook/hotmail
     tempmail/fake email/temporary mail/tmpmail
     netflix
-    amazon\033[36m
+    amazon
 ------------------------------------------------------------------------------
 EXIT
     bye
