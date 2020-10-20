@@ -8,7 +8,8 @@ The final goal for Jarvis is to do everything from sending emails to telling you
 ## Get Started
 Clone the repo and simply run `python jarvis.py` for mac and windows or
 `python3 jarvis.py` for linux.
-Type the command "help" to view all commands when jarvis asks to enter command
+Type the command "help" to view all commands when jarvis asks to enter command.
+Alternatively, check out our `AllCommands.txt` file.
 
 ## Contributing
 ### We need your help!
