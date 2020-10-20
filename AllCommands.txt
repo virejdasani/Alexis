@@ -1,0 +1,35 @@
+------------------------------------------------------------------------------
+GENERAL
+    hi
+    hey
+    hello
+    how are you
+    hows it going
+    whats up
+    who are you 
+    what are you
+------------------------------------------------------------------------------
+WEBSITES
+    # To open websites that are on our list, type 'open' followed by name of site.
+    # If the site isn't on the list, type 'open' followed by the URL
+    # To google something, type: 'google' followed by the search term
+
+    google
+    youtube/yt
+    spotify
+    github/gh
+    gmail
+    outlook/hotmail
+    tempmail/fake email/temporary mail/tmpmail
+    netflix
+    amazon\033[36m
+------------------------------------------------------------------------------
+EXIT
+    bye
+    abort
+    exit
+------------------------------------------------------------------------------
+HELP
+    help
+    all commands
+------------------------------------------------------------------------------

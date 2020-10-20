@@ -1,5 +1,7 @@
 # JARVIS - YOUR PERSONAL ROBOT BUTLER
 
+
+
 # TODO add functionality so any website can be opened with get or open keyword add wikipedia functionality
 
 # RULES
@@ -25,41 +27,8 @@ howAreYouResponse = ["\033[36mJust doing my thing!", "\033[36mI am great!", "\03
 agreeResponse = ["\033[36mSure thing", "\033[36mOkay", "\033[36mFor sure", "\033[36mAlright"]        
 unrecognisedCommandResponse = ["\033[36mSorry, I don't know that", "\033[36mI'm not too sure about that one", "\033[36mHmm, I'm not sure I know how to do that yet"]
 exitResponse = ["\033[36mGoodbye", "\033[36mBye Bye!", "\033[36mSee you soon", "\033[36mCatch you later!"]
-allCommands = '''\033[33m
-------------------------------------------------------------------------------
-\033[36mGENERAL\033[33m
-    hi
-    hey
-    hello
-    how are you
-    how r u
-    hows it going
-    whats up
-    who are you 
-    what are you\033[36m
-------------------------------------------------------------------------------
-WEBSITES
-# prefix name of site with open\033[33m
-    google
-    youtube/yt
-    spotify
-    github/gh
-    gmail
-    outlook/hotmail
-    tempmail/fake email/temporary mail/tmpmail
-    netflix
-    amazon\033[36m
-------------------------------------------------------------------------------
-EXIT\033[33m
-    bye
-    abort
-    exit\033[36m
-------------------------------------------------------------------------------
-HELP\033[33m
-    help
-    all commands\033[36m
-------------------------------------------------------------------------------
-'''
+
+
 
 
 # Function to greet differently depending on the time of day
@@ -108,7 +77,7 @@ while finished == False:
 
 
 # WEB BASED
-    # Open in browser
+    # Open sites in browser
     elif "open " in command:
         if "youtube" in command or "yt" in command:
             print(random.choice(agreeResponse))
@@ -154,6 +123,13 @@ while finished == False:
             else:
                 print("This is not on our website list")
                 print("You can type 'open' followed by the url")
+
+    # Google search
+    elif "google " in command:
+        print(random.choice(agreeResponse))
+        webbrowser.open('https://www.google.com/search?q=' + command[7:])
+
+
                 
     # Wikipedia
     elif "search " in command:
@@ -162,11 +138,14 @@ while finished == False:
             print(wikipedia.summary(searchTerm))
         # If not found on wikipedia, it will do a google search for the command 
         except:
+            print("An error occurred")
+            print(f"Googling {command}")
             webbrowser.open('https://www.google.com/search?q=' + command[7:])
 
 # HELP
     elif "help" in command or "all commands" in command:
-        print(allCommands)
+        with open('AllCommands.txt', 'r') as f:
+            print(f.read())
 
 # EXIT
     elif "bye" in command or "goodbye" in command or "abort" in command or "exit" in command:
@@ -180,3 +159,32 @@ while finished == False:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  MADE BY:_            _   _____                        _ 
+#  \ \    / (_)        (_) |  __ \                      (_)
+#   \ \  / / _ _ __ ___ _  | |  | | __ _ ___  __ _ _ __  _ 
+#    \ \/ / | | '__/ _ \ | | |  | |/ _` / __|/ _` | '_ \| |
+#     \  /  | | | |  __/ | | |__| | (_| \__ \ (_| | | | | |
+#      \/   |_|_|  \___| | |_____/ \__,_|___/\__,_|_| |_|_|
+#                     _/ |                                 
+#                    |__/                                  
