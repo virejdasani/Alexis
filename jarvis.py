@@ -21,6 +21,7 @@ import speech_recognition as sr
 
 
 finished = False
+speechRecog = True
 
 
 # LISTS
@@ -61,126 +62,240 @@ with sr.Microphone() as source:
     # MAIN LOOP
     while finished == False:
 
-        r1 = sr.Recognizer()
-        r2 = sr.Recognizer()
+        # This is the default setting - voice commands
+        while speechRecog == True:
+            # Recognisers for speech recognition
+            r1 = sr.Recognizer()
+            r2 = sr.Recognizer()
 
-        # This will prompt user for speech input in green color and not go to the next line
-        print("\n\033[1;32;40mSpeak Command: ", end="")
+            # This will prompt user for speech input in green color and not go to the next line
+            print("\n\033[1;32;40mSpeak Command: ", end="")
 
-        # Try to get speech input from user
-        try:
-            audio = r1.listen(source)
-            recognised = r2.recognize_google(audio)
-            # Make the speech lowercase for simplicity
-            command = recognised.lower()
-            # Print exactly what user said
-            print (recognised)
-
-        except sr.UnknownValueError:
-            # This will prompt user for text input in green color and not go to the next line
-            print("\n\033[1;32;40mSpeech not recognised, Type Command: ", end="")
-            # Take input from user in yellow color   
-            command = input("\033[33m").lower()
-
-        except sr.RequestError as e:
-            # This will prompt user for text input in green color and not go to the next line
-            print("\n\033[1;32;40mSpeech not recognised, Type Command: ", end="")
-            # Take input from user in yellow color   
-            command = input("\033[33m").lower()
-                
-
-    # ADD POSSIBLE USER COMMANDS HERE
-    # GENERAL
-        if "hi" in command or "hey" in command or "hello" in command or "hai" in command:
-            print(random.choice(helloResponse))
-
-        elif "how are you" in command or "hows it going" in command or "how's it going" in command or "whats up" in command or "what's up" in command or "how r u" in command:
-            print(random.choice(howAreYouResponse)) 
-
-        elif "who are you" in command or "what are you" in command:
-            print("\033[36mI am JARVIS, your personal robot butler!") 
-
-
-    # WEB BASED
-        # Open sites in browser
-        elif "open " in command:
-            if "youtube" in command or "yt" in command:
-                print(random.choice(agreeResponse))
-                webbrowser.open('www.youtube.com')
-
-            elif "google" in command:
-                print(random.choice(agreeResponse))
-                webbrowser.open('www.google.com')
-            
-            elif "gmail" in command:
-                print(random.choice(agreeResponse))
-                webbrowser.open('mail.google.com')    
-
-            elif "outlook" in command or "hotmail" in command:
-                print(random.choice(agreeResponse))
-                webbrowser.open('outlook.live.com')
-                
-            elif "github" in command or "gh" in command:
-                print(random.choice(agreeResponse))
-                webbrowser.open('www.github.com')    
-                
-            elif "netflix" in command:
-                print(random.choice(agreeResponse))
-                webbrowser.open('www.netflix.com')    
-
-            elif "spotify" in command:
-                print(random.choice(agreeResponse))
-                webbrowser.open('www.spotify.com')
-
-            elif "amazon" in command:
-                print(random.choice(agreeResponse))
-                webbrowser.open('www.amazon.com')             
-
-            elif "temp mail" in command or "fake email" in command or " temporary mail" in command or "tempmail" in command or "tempmail" in command or "tmpmail" in command or "tmpmail" in command:
-                print(random.choice(agreeResponse))
-                webbrowser.open('www.temp-mail.org/en/')
-
-            # This is to open websites that are not in the list
-            else:
-                if "www." in command or ".com" in command or ".in" in command or ".co" in command:
-                    # It will open the url when command is: open {www.URL.com/co/in/etc}
-                    webbrowser.open(command[5:])
-                else:
-                    print("This is not on our website list")
-                    print("You can type 'open' followed by the url")
-
-        # Google search
-        elif "google " in command:
-            print(random.choice(agreeResponse))
-            webbrowser.open('https://www.google.com/search?q=' + command[7:])
-
-
-                    
-        # Wikipedia
-        elif "search " in command:
+            # Try to get speech input from user
             try:
-                searchTerm = command[7:]        
-                print(wikipedia.summary(searchTerm))
-            # If not found on wikipedia, it will do a google search for the command 
-            except:
-                print("An error occurred")
-                print(f"Googling {command}")
+                audio = r1.listen(source)
+                recognised = r2.recognize_google(audio)
+                # Make the speech lowercase for simplicity
+                command = recognised.lower()
+                # Print exactly what user said
+                print (recognised)
+
+            except sr.UnknownValueError:
+                # This will prompt user for text input in green color and not go to the next line
+                print("\n\033[1;32;40mSpeech not recognised to Type Commands, say 'type' or enter it here: ", end="")
+                
+
+            except sr.RequestError as e:
+                # This will prompt user for text input in green color and not go to the next line
+                print("\n\033[1;32;40mSpeech not recognised to Type Commands, say 'type' or enter it here: ", end="")
+
+
+
+        # ADD POSSIBLE USER COMMANDS HERE
+        # GENERAL
+            if "hi" in command or "hey" in command or "hello" in command or "hai" in command:
+                print(random.choice(helloResponse))
+
+            elif "how are you" in command or "hows it going" in command or "how's it going" in command or "whats up" in command or "what's up" in command or "how r u" in command:
+                print(random.choice(howAreYouResponse)) 
+
+            elif "who are you" in command or "what are you" in command:
+                print("\033[36mI am JARVIS, your personal robot butler!") 
+
+
+        # WEB BASED
+            # Open sites in browser
+            elif "open " in command:
+                if "youtube" in command or "yt" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.youtube.com')
+
+                elif "google" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.google.com')
+                
+                elif "gmail" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('mail.google.com')    
+
+                elif "outlook" in command or "hotmail" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('outlook.live.com')
+                    
+                elif "github" in command or "gh" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.github.com')    
+                    
+                elif "netflix" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.netflix.com')    
+
+                elif "spotify" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.spotify.com')
+
+                elif "amazon" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.amazon.com')             
+
+                elif "temp mail" in command or "fake email" in command or " temporary mail" in command or "tempmail" in command or "tempmail" in command or "tmpmail" in command or "tmpmail" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.temp-mail.org/en/')
+
+                # This is to open websites that are not in the list
+                else:
+                    if "www." in command or ".com" in command or ".in" in command or ".co" in command:
+                        # It will open the url when command is: open {www.URL.com/co/in/etc}
+                        webbrowser.open(command[5:])
+                    else:
+                        print("This is not on our website list")
+                        print("You can type 'open' followed by the url")
+
+            # Google search
+            elif "google " in command:
+                print(random.choice(agreeResponse))
                 webbrowser.open('https://www.google.com/search?q=' + command[7:])
 
-    # HELP
-        # This will print everything in the file: AllCommands.txt
-        elif "help" in command or "all commands" in command:
-            with open('AllCommands.txt', 'r') as f:
-                print(f.read())
 
-    # EXIT
-        elif "bye" in command or "goodbye" in command or "abort" in command or "exit" in command:
-            print(random.choice(exitResponse))
-            finished = True    
-    # UNRECOGNISED COMMAND
-        else:
-            print(f"{random.choice(unrecognisedCommandResponse)}. Type 'help' to see the list of commands") 
+                        
+            # Wikipedia
+            elif "search " in command:
+                try:
+                    searchTerm = command[7:]        
+                    print(wikipedia.summary(searchTerm))
+                # If not found on wikipedia, it will do a google search for the command 
+                except:
+                    print("An error occurred")
+                    print(f"Googling {command}")
+                    webbrowser.open('https://www.google.com/search?q=' + command[7:])
 
+        # HELP
+            # This will print everything in the file: AllCommands.txt
+            elif "help" in command or "all commands" in command:
+                with open('AllCommands.txt', 'r') as f:
+                    print(f.read())
+
+        # TURN OFF SPEECH RECOGNITION
+            elif "type" in command:
+                # Turn off speech recognition
+                speechRecog = False
+
+
+        # EXIT
+            elif "bye" in command or "goodbye" in command or "abort" in command or "exit" in command or "stop" in command:
+                print(random.choice(exitResponse))
+                finished = True    
+        # UNRECOGNISED COMMAND
+            else:
+                print(f"{random.choice(unrecognisedCommandResponse)}. Type 'help' to see the list of commands") 
+
+
+        # This is for when voice commands are disabled 
+        while speechRecog == False:
+            # This will prompt user for text input in green color and not go to the next line
+            print("\n\033[1;32;40mType Command: ", end="")
+            # Take input from user in yellow color   
+            command = input("\033[33m").lower()
+
+
+
+        # ADD POSSIBLE USER COMMANDS HERE
+        # GENERAL
+            if "hi" in command or "hey" in command or "hello" in command or "hai" in command:
+                print(random.choice(helloResponse))
+
+            elif "how are you" in command or "hows it going" in command or "how's it going" in command or "whats up" in command or "what's up" in command or "how r u" in command:
+                print(random.choice(howAreYouResponse)) 
+
+            elif "who are you" in command or "what are you" in command:
+                print("\033[36mI am JARVIS, your personal robot butler!") 
+
+
+        # WEB BASED
+            # Open sites in browser
+            elif "open " in command:
+                if "youtube" in command or "yt" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.youtube.com')
+
+                elif "google" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.google.com')
+                
+                elif "gmail" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('mail.google.com')    
+
+                elif "outlook" in command or "hotmail" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('outlook.live.com')
+                    
+                elif "github" in command or "gh" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.github.com')    
+                    
+                elif "netflix" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.netflix.com')    
+
+                elif "spotify" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.spotify.com')
+
+                elif "amazon" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.amazon.com')             
+
+                elif "temp mail" in command or "fake email" in command or " temporary mail" in command or "tempmail" in command or "tempmail" in command or "tmpmail" in command or "tmpmail" in command:
+                    print(random.choice(agreeResponse))
+                    webbrowser.open('www.temp-mail.org/en/')
+
+                # This is to open websites that are not in the list
+                else:
+                    if "www." in command or ".com" in command or ".in" in command or ".co" in command:
+                        # It will open the url when command is: open {www.URL.com/co/in/etc}
+                        webbrowser.open(command[5:])
+                    else:
+                        print("This is not on our website list")
+                        print("You can type 'open' followed by the url")
+
+            # Google search
+            elif "google " in command:
+                print(random.choice(agreeResponse))
+                webbrowser.open('https://www.google.com/search?q=' + command[7:])
+
+
+                        
+            # Wikipedia
+            elif "search " in command:
+                try:
+                    searchTerm = command[7:]        
+                    print(wikipedia.summary(searchTerm))
+                # If not found on wikipedia, it will do a google search for the command 
+                except:
+                    print("An error occurred")
+                    print(f"Googling {command}")
+                    webbrowser.open('https://www.google.com/search?q=' + command[7:])
+
+        # HELP
+            # This will print everything in the file: AllCommands.txt
+            elif "help" in command or "all commands" in command:
+                with open('AllCommands.txt', 'r') as f:
+                    print(f.read())
+
+        # TURN OFF SPEECH RECOGNITION
+            elif "speak" in command:
+                # Turn off speech recognition
+                speechRecog = True
+
+
+        # EXIT
+            elif "bye" in command or "goodbye" in command or "abort" in command or "exit" in command or "stop" in command:
+                print(random.choice(exitResponse))
+                finished = True    
+        # UNRECOGNISED COMMAND
+            else:
+                print(f"{random.choice(unrecognisedCommandResponse)}. Type 'help' to see the list of commands") 
 
 
 
