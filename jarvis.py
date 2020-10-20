@@ -64,18 +64,30 @@ with sr.Microphone() as source:
         r1 = sr.Recognizer()
         r2 = sr.Recognizer()
 
-        print("\n\033[1;32;40mEnter Command: ", end="")
-        
-        audio = r1.listen(source)
-        recognised = r2.recognize_google(audio)
-        command = recognised.lower()
-        print (recognised)
+        # This will prompt user for speech input in green color and not go to the next line
+        print("\n\033[1;32;40mSpeak Command: ", end="")
 
-        # # This will prompt user for input in green color and not go to the next line
-        # print("\n\033[1;32;40mEnter Command: ", end="")
-        # # Take input from user in yellow color   
-        # command = input("\033[33m").lower()
+        # Try to get speech input from user
+        try:
+            audio = r1.listen(source)
+            recognised = r2.recognize_google(audio)
+            # Make the speech lowercase for simplicity
+            command = recognised.lower()
+            # Print exactly what user said
+            print (recognised)
 
+        except sr.UnknownValueError:
+            # This will prompt user for text input in green color and not go to the next line
+            print("\n\033[1;32;40mSpeech not recognised, Type Command: ", end="")
+            # Take input from user in yellow color   
+            command = input("\033[33m").lower()
+
+        except sr.RequestError as e:
+            # This will prompt user for text input in green color and not go to the next line
+            print("\n\033[1;32;40mSpeech not recognised, Type Command: ", end="")
+            # Take input from user in yellow color   
+            command = input("\033[33m").lower()
+                
 
     # ADD POSSIBLE USER COMMANDS HERE
     # GENERAL
