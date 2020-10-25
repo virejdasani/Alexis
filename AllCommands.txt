@@ -1,13 +1,8 @@
 ------------------------------------------------------------------------------
 GENERAL
-    hi
-    hey
-    hello
-    how are you
-    hows it going
-    whats up
-    who are you 
-    what are you
+    hi/hey/hello
+    how are you/hows it going/whats up
+    who are you/what are you
 ------------------------------------------------------------------------------
 WEBSITES
     # To open websites that are on our list, type 'open' followed by name of site.
@@ -24,18 +19,12 @@ WEBSITES
     netflix
     amazon
 ------------------------------------------------------------------------------
-SPEECH COMMANDS
+USE SPEECH COMMANDS
 	speak
 ------------------------------------------------------------------------------
 EXIT
-    bye
-    abort
-    exit
+    bye/abort/exit
 ------------------------------------------------------------------------------
 HELP
-    help
-    
-    
-    
-    all commands
+    help/all commands
 ------------------------------------------------------------------------------

@@ -1,14 +1,14 @@
-# Jarvis- Your Personal Robot Butler
-![JARVIS](https://github.com/virejdasani/Jarvis/blob/master/res/jarvisimg.jpg?raw=true)
+# Alexis - Your Personal Robot Butler
+![Alexis](https://github.com/virejdasani/Alexis/blob/master/res/Alexisimg.jpg?raw=true)
 
-Jarvis is an open source Personal Assistant that works on the command line.
+Alexis is an open source Personal Assistant that works on the command line.
 Right now, in its early stages of development, it can't do much except open websites and tell you how it's doing.
-The final goal for Jarvis is to do everything from sending emails to telling you a joke.
+The final goal for Alexis is to do everything from sending emails to telling you a joke.
 
 ## Get Started
-Clone the repo and simply run `python jarvis.py` for mac and windows or
-`python3 jarvis.py` for linux.
-Type the command "help" to view all commands when jarvis asks to enter command.
+Clone the repo and simply run `python alexis.py` for mac and windows or
+`python3 Alexis.py` for linux.
+Type the command "help" to view all commands when Alexis asks to enter command.
 Alternatively, check out our `AllCommands.txt` file.
 
 ## Contributing

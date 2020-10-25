@@ -1,24 +1,21 @@
-# JARVIS - YOUR PERSONAL ROBOT BUTLER
-
-
-# RULES
+# Alexis - YOUR PERSONAL ROBOT BUTLER
 '''
-\033[36m (Blue) for all responses
-\033[1;32;40m (Green) for 'Enter Command: ' phrase
-
-KEYWORDS:
-"open" is reserved to open websites in the browser
-"search" is for wikipedia
-"google" is to google search
-
+RULES
 '''
+# \033[36m (Blue) for all responses
+# \033[1;32;40m (Green) for 'Enter Command: ' phrase
+
+# KEYWORDS:
+# "open" is reserved to open websites in the browser
+# "search" is for wikipedia
+# "google" is to google search
+
 
 import datetime
 import random
 import webbrowser
 import wikipedia
 import speech_recognition as sr
-
 
 
 finished = False
@@ -29,7 +26,7 @@ speechRecog = False
 helloResponse = ["\033[36mHello to you too!", "\033[36mHey!", "\033[36mHola amigo", "\033[36mGood to see you!"] 
 howAreYouResponse = ["\033[36mJust doing my thing!", "\033[36mI am great!", "\033[36mAmazing!", "\033[36mFeeling awesome!"]
 agreeResponse = ["\033[36mSure thing", "\033[36mOkay", "\033[36mFor sure", "\033[36mAlright"]        
-unrecognisedCommandResponse = ["\033[36mSorry, I don't know that", "\033[36mI'm not too sure about that one", "\033[36mHmm, I'm not sure I know how to do that yet"]
+unrecognisedCommandResponse = ["\033[36mSorry, I don't know that", "\033[36mI'm not too sure about that one", "\033[36mHmm, I'm not sure I know that yet"]
 exitResponse = ["\033[36mGoodbye", "\033[36mBye Bye!", "\033[36mSee you soon", "\033[36mCatch you later!"]
 
 
@@ -42,15 +39,15 @@ def greet():
     # "\033[36m" shows the string in Cyan in the terminal
     # 12am to 11:59am
     if hour >= 0 and hour < 12 :
-        greeting = "\033[36m\nGood Moning, I am JARVIS, your personal robot butler "
+        greeting = "\033[36m\nGood Moning, I am Alexis, your personal robot butler "
 
     # 12pm to 5:59pm 
     if hour >= 12 and hour < 18:
-        greeting = "\033[36m\nGood Afternoon, I am JARVIS, your personal robot butler "
+        greeting = "\033[36m\nGood Afternoon, I am Alexis, your personal robot butler "
 
     # 6pm to 11:59pm 
     if hour >= 18  and hour != 0:
-        greeting = "\033[36m\nGood Evening, I am JARVIS, your personal robot butler "  
+        greeting = "\033[36m\nGood Evening, I am Alexis, your personal robot butler "  
     
     return greeting
 
@@ -109,7 +106,7 @@ while finished == False:
             print(random.choice(howAreYouResponse)) 
 
         elif "who are you" in command or "what are you" in command:
-            print("\033[36mI am JARVIS, your personal robot butler!") 
+            print("\033[36mI am Alexis, your personal robot butler!") 
 
 
     # WEB BASED
@@ -184,9 +181,10 @@ while finished == False:
             with open('AllCommands.txt', 'r') as f:
                 print(f.read())
 
-    # TURN OFF SPEECH RECOGNITION
+    # TURN ON SPEECH RECOGNITION
         elif "speak" in command:
-            # Turn off speech recognition
+            print("Turning on Speech Recognition...")
+            # Turn on speech recognition
             speechRecog = True
 
 
