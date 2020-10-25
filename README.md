@@ -7,7 +7,7 @@ The final goal for Alexis is to do everything from sending emails to telling you
 
 ## Get Started
 Clone the repo and simply run `python alexis.py` for mac and windows or
-`python3 Alexis.py` for linux.
+`python3 alexis.py` for linux.
 Type the command "help" to view all commands when Alexis asks to enter command.
 Alternatively, check out our `AllCommands.txt` file.
 
