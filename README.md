@@ -11,6 +11,10 @@ Clone the repo and simply run `python alexis.py` for mac and windows or
 Type the command "help" to view all commands when Alexis asks to enter command.
 Alternatively, check out our `AllCommands.txt` file.
 
+## Installation
+- The modules `wikipedia` and `SpeechRecognition` are required to run Alexis.     
+- To install them, run:`pip install wikipedia` `pip install speechrecognition`.
+
 ## Contributing
 ### We need your help!
 - PR's are accepted!!
