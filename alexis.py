@@ -114,9 +114,16 @@ while finished == False:
             try:
                 r= requests.get('https://www.boredapi.com/api/activity').json()
                 activity=r['activity']
-                print("try this:\n" + activity)
+                print("\033[36mTry this:\n" + activity)
+                # If there is a link in the json of the API
                 if (r['link'] != ""):
-                    webbrowser.open(r['link'])
+                    # Check if user wants to open that link
+                    open_browser = input("\033[36mLearn more? (Yes/No)\n").lower()
+                    if open_browser == "yes" or open_browser == "y":
+                        webbrowser.open(r['link'])  
+                    
+
+    
             except:
                 print("An error occurred")
 
