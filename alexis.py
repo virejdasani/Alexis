@@ -108,6 +108,17 @@ while finished == False:
 
         elif "who are you" in command or "what are you" in command:
             print("\033[36mI am Alexis, your personal robot butler!") 
+	
+	# Bored
+        elif "bored" in command:
+            try:
+                r= requests.get('https://www.boredapi.com/api/activity').json()
+                activity=r['activity']
+                print("try this: "+activity)
+                if (r['link'] != ""):
+                    webbrowser.open(r['link'])
+            except:
+                print("An error occurred")
 
 
     # WEB BASED
@@ -175,17 +186,7 @@ while finished == False:
                 print("An error occurred")
                 print(f"Googling {command}")
                 webbrowser.open('https://www.google.com/search?q=' + command[7:])
-
-	# bored
-        elif "bored" in command:
-            try:
-                r= requests.get('https://www.boredapi.com/api/activity').json()
-                activity=r['activity']
-                print("try this: "+activity)
-                if (r['link'] != ""):
-                    webbrowser.open(r['link'])
-            except:
-                print("An error occurred")
+		
 
         # HELP
         # This will print everything in the file: AllCommands.txt
