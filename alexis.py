@@ -29,6 +29,7 @@ howAreYouResponse = ["\033[36mJust doing my thing!", "\033[36mI am great!", "\03
 agreeResponse = ["\033[36mSure thing", "\033[36mOkay", "\033[36mFor sure", "\033[36mAlright"]        
 unrecognisedCommandResponse = ["\033[36mSorry, I don't know that", "\033[36mI'm not too sure about that one", "\033[36mHmm, I'm not sure I know that yet"]
 exitResponse = ["\033[36mGoodbye", "\033[36mBye Bye!", "\033[36mSee you soon", "\033[36mCatch you later!"]
+errorResponse = ["\033[36mAn error occured", "\033[36mSorry, there was an error", "\033[36mError, try again"]
 
 
 # Function to greet differently depending on the time of day
@@ -109,23 +110,6 @@ while finished == False:
         elif "who are you" in command or "what are you" in command:
             print("\033[36mI am Alexis, your personal robot butler!") 
 	
-	# Bored
-        elif "bored" in command:
-            try:
-                r= requests.get('https://www.boredapi.com/api/activity').json()
-                activity=r['activity']
-                print("\033[36mTry this:\n" + activity)
-                # If there is a link in the json of the API
-                if (r['link'] != ""):
-                    # Check if user wants to open that link
-                    open_browser = input("\033[36mLearn more? (Yes/No)\n").lower()
-                    if open_browser == "yes" or open_browser == "y":
-                        webbrowser.open(r['link'])  
-
-    
-            except:
-                print("\033[36mAn error occurred")
-
 
     # WEB BASED
         # Open sites in browser
@@ -181,7 +165,6 @@ while finished == False:
             webbrowser.open('https://www.google.com/search?q=' + command[7:])
 
 
-                    
         # Wikipedia
         elif "search " in command:
             try:
@@ -192,6 +175,23 @@ while finished == False:
                 print("An error occurred")
                 print(f"Googling {command}")
                 webbrowser.open('https://www.google.com/search?q=' + command[7:])
+
+    # API BASED 
+	    # Bored
+        elif "bored" in command:
+            try:
+                r= requests.get('https://www.boredapi.com/api/activity').json()
+                activity=r['activity']
+                print("\033[36mTry this:\n" + activity)
+                # If there is a link in the json of the API
+                if (r['link'] != ""):
+                    # Check if user wants to open that link
+                    open_browser = input("\033[36mLearn more? (Yes/No)\n").lower()
+                    if open_browser == "yes" or open_browser == "y":
+                        webbrowser.open(r['link']) 
+            # In case of an error
+            except:
+                print(random.choice(errorResponse))
 		
 
     # HELP
