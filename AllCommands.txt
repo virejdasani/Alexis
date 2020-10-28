@@ -3,9 +3,7 @@ GENERAL
     hi/hey/hello
     how are you/hows it going/whats up
     who are you/what are you
-
-    bored 
-        #will give you a random activity to do and open a relevant website if you need more information
+    bored - will give you a random activity to do and/or open a relevant website if you need more information
 ------------------------------------------------------------------------------
 WEBSITES
     # To open websites that are on our list, type 'open' followed by name of site.
