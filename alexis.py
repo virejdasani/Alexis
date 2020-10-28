@@ -114,7 +114,7 @@ while finished == False:
             try:
                 r= requests.get('https://www.boredapi.com/api/activity').json()
                 activity=r['activity']
-                print("try this: "+activity)
+                print("try this:\n" + activity)
                 if (r['link'] != ""):
                     webbrowser.open(r['link'])
             except:
