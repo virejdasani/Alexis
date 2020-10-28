@@ -18,3 +18,4 @@ Alternatively, check out our `AllCommands.txt` file.
 - Don't forget to document what you have coded/made changes to, using comments.
 - We welcome all commits, big or small!
 - Your PR's will count towards your Hacktoberfest!
+- you may need to install modules wikipedia and SpeechRecognition if you do not have them already
