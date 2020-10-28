@@ -188,7 +188,7 @@ while finished == False:
                 webbrowser.open('https://www.google.com/search?q=' + command[7:])
 		
 
-        # HELP
+    # HELP
         # This will print everything in the file: AllCommands.txt
         elif "help" in command or "all commands" in command:
             with open('AllCommands.txt', 'r') as f:
