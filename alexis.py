@@ -16,6 +16,7 @@ import random
 import webbrowser
 import wikipedia
 import speech_recognition as sr
+import requests
 
 
 finished = False
@@ -175,7 +176,18 @@ while finished == False:
                 print(f"Googling {command}")
                 webbrowser.open('https://www.google.com/search?q=' + command[7:])
 
-    # HELP
+	# bored
+        elif "bored" in command:
+            try:
+                r= requests.get('https://www.boredapi.com/api/activity').json()
+                activity=r['activity']
+                print("try this: "+activity)
+                if (r['link'] != ""):
+                    webbrowser.open(r['link'])
+            except:
+                print("An error occurred")
+
+        # HELP
         # This will print everything in the file: AllCommands.txt
         elif "help" in command or "all commands" in command:
             with open('AllCommands.txt', 'r') as f:
