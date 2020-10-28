@@ -121,11 +121,10 @@ while finished == False:
                     open_browser = input("\033[36mLearn more? (Yes/No)\n").lower()
                     if open_browser == "yes" or open_browser == "y":
                         webbrowser.open(r['link'])  
-                    
 
     
             except:
-                print("An error occurred")
+                print("\033[36mAn error occurred")
 
 
     # WEB BASED
