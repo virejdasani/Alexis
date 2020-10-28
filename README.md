@@ -15,7 +15,6 @@ Alternatively, check out our `AllCommands.txt` file.
 - The modules `wikipedia` and `SpeechRecognition` are required to run Alexis.     
 - To install them, run:`pip install wikipedia` `pip install speechrecognition`.
 
-
 ## Contributing
 ### We need your help!
 - PR's are accepted!!
