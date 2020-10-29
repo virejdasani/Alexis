@@ -8,6 +8,7 @@ The final goal for Alexis is to do everything from sending emails to telling you
 ## Get Started
 Clone the repo and simply run `python alexis.py` for mac and windows or
 `python3 alexis.py` for linux.
+Alternatively, head to the Builds folder and open the latest version of the directory. Simply run the alexis executable by typing: `./alexis` in the terminal or cmd.
 Type the command "help" to view all commands when Alexis asks to enter command.
 Alternatively, check out our `AllCommands.txt` file.
 The default method to give commands is by typing them. However, you can type in `speak` to turn on voice recognition.
