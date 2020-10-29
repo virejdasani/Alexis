@@ -196,7 +196,7 @@ while finished == False:
 
     # HELP
         # This will print everything in the file: AllCommands.txt
-        elif "help" in command or "all commands" in command:
+        elif "help" in command or "all commands" in command or "list command" in command:
             with open('AllCommands.txt', 'r') as f:
                 print(f.read())
 
