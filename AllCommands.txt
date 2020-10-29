@@ -20,6 +20,7 @@ WEBSITES
     tempmail/fake email/temporary mail/tmpmail
     netflix
     amazon
+    google classroom
 ------------------------------------------------------------------------------
 USE SPEECH COMMANDS
 	speak
