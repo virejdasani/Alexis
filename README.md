@@ -10,6 +10,7 @@ Clone the repo and simply run `python alexis.py` for mac and windows or
 `python3 alexis.py` for linux.
 Type the command "help" to view all commands when Alexis asks to enter command.
 Alternatively, check out our `AllCommands.txt` file.
+The default method to give commands is by typing them. However, you can type in `speak` to turn on voice recognition.
 
 ## Installation
 - The modules `wikipedia` and `SpeechRecognition` are required to run Alexis.     
