@@ -149,7 +149,6 @@ while finished == False:
             elif "google classroom" in command:
                 print(random.choice(agreeResponse))
                 webbrowser.open('www.classroom.google.com')
-                        
 
             elif "temp mail" in command or "fake email" in command or " temporary mail" in command or "tempmail" in command or "tempmail" in command or "tmpmail" in command or "tmpmail" in command:
                 print(random.choice(agreeResponse))
