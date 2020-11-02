@@ -24,6 +24,7 @@ speechRecog = False
 
 
 # LISTS
+# Responses
 helloResponse = ["\033[36mHello to you too!", "\033[36mHey!", "\033[36mHola amigo", "\033[36mGood to see you!"] 
 howAreYouResponse = ["\033[36mJust doing my thing!", "\033[36mI am great!", "\033[36mAmazing!", "\033[36mFeeling awesome!"]
 agreeResponse = ["\033[36mSure thing", "\033[36mOkay", "\033[36mFor sure", "\033[36mAlright"]        
@@ -31,6 +32,9 @@ unrecognisedCommandResponse = ["\033[36mSorry, I don't know that", "\033[36mI'm 
 exitResponse = ["\033[36mGoodbye", "\033[36mBye Bye!", "\033[36mSee you soon", "\033[36mCatch you later!"]
 errorResponse = ["\033[36mAn error occured", "\033[36mSorry, there was an error", "\033[36mError, try again"]
 
+# Inputs
+agreeInput = ["yes", "y", "sure", "yep"]
+disagreeInput = ["no", "n", "nope"]
 
 # Function to greet differently depending on the time of day
 def greet():
@@ -184,19 +188,42 @@ while finished == False:
 	    # Bored
         elif "bored" in command:
             try:
-                r= requests.get('https://www.boredapi.com/api/activity').json()
-                activity=r['activity']
+                r = requests.get('https://www.boredapi.com/api/activity').json()
+                activity = r['activity']
                 print("\033[36mTry this:\n" + activity)
                 # If there is a link in the json of the API
                 if (r['link'] != ""):
                     # Check if user wants to open that link
                     open_browser = input("\033[36mLearn more? (Yes/No)\n").lower()
-                    if open_browser == "yes" or open_browser == "y":
+                    if open_browser in agreeInput:
                         webbrowser.open(r['link']) 
             # In case of an error
             except:
                 print(random.choice(errorResponse))
-		
+
+        # Jokes
+        elif "joke" in command:
+            # Try getting joke
+            try:
+                r = requests.get('https://sv443.net/jokeapi/v2/joke/Miscellaneous,Pun,Spooky,Christmas?blacklistFlags=nsfw,racist,sexist&type=single').json()
+                activity = r['joke']
+                print("\033[34m" + activity)
+                askForInput = True
+                while askForInput == True:
+                    # If user wants another joke
+                    anotherOne = input("\033[36mAnother one?(Yes/No)\n").lower()
+                    # Repeat same to display another joke
+                    if anotherOne in agreeInput:
+                        r = requests.get('https://sv443.net/jokeapi/v2/joke/Any?blacklistFlags=nsfw,racist,sexist&type=single').json()
+                        activity = r['joke']
+                        print("\033[34m" + activity)
+                        askForInput = True
+                    else:
+                        askForInput = False                        
+
+            # In case of an error
+            except:
+                print(random.choice(errorResponse))
 
     # HELP
         # This will print everything in the file: AllCommands.txt
