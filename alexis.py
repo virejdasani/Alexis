@@ -242,10 +242,10 @@ while finished == False:
         elif "bye" in command or "goodbye" in command or "abort" in command or "exit" in command or "stop" in command:
             print(random.choice(exitResponse))
             finished = True    
+            exit()
     # UNRECOGNISED COMMAND
         else:
             print(f"{random.choice(unrecognisedCommandResponse)}. Type 'help' to see the list of commands") 
-
 
 
 #  MADE BY:_            _   _____                        _ 
