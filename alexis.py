@@ -16,7 +16,12 @@ import random
 import webbrowser
 import wikipedia
 import speech_recognition as sr
+# For request errors
 import requests
+# For email
+import smtplib
+# For getting password anonymously
+import getpass
 
 
 finished = False
@@ -184,6 +189,30 @@ while finished == False:
                 print(f"Googling {command}")
                 webbrowser.open('https://www.google.com/search?q=' + command[7:])
 
+        # Send E-mails
+        elif "send mail" in command or "send e-mail" in command or "send email" in command:
+            # Outlook/Hotmail
+            session = smtplib.SMTP('smtp.live.com', 587)
+
+            session.starttls()
+            try:
+                # Get the required details
+                mailID = input("\033[33mEnter your Outlook/Hotmail E-mail address\n").lower() 
+                password = getpass.getpass("Enter Password\n")
+                reciepient = input("\033[33mEnter email of reciepient\n").lower()
+                msg = input("\033[33mEnter message\n")
+
+                # This is required for it to work
+                message = f"\n {msg}"
+                # Login
+                session.login(mailID, password)
+                # SEND
+                session.sendmail(mailID, reciepient, message)          
+                session.quit()
+                print("\033[36mSent!")
+            except:
+                print(random.choice(errorResponse))
+                    
     # API BASED 
 	    # Bored
         elif "bored" in command:
