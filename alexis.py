@@ -24,6 +24,7 @@ import smtplib
 import getpass
 
 
+
 finished = False
 speechRecog = False
 
@@ -32,6 +33,7 @@ speechRecog = False
 # Responses
 helloResponse = ["\033[36mHello to you too!", "\033[36mHey!", "\033[36mHola amigo", "\033[36mGood to see you!"] 
 howAreYouResponse = ["\033[36mJust doing my thing!", "\033[36mI am great!", "\033[36mAmazing!", "\033[36mFeeling awesome!"]
+whatsUpResponse = ["\033[36mThe ceiling, the sky?", "\033[36mNothing much, just robot butler stuff...", "\033[36mJust personal assistant stuff..."]
 agreeResponse = ["\033[36mSure thing", "\033[36mOkay", "\033[36mFor sure", "\033[36mAlright"]        
 unrecognisedCommandResponse = ["\033[36mSorry, I don't know that", "\033[36mI'm not too sure about that one", "\033[36mHmm, I'm not sure I know that yet"]
 exitResponse = ["\033[36mGoodbye", "\033[36mBye Bye!", "\033[36mSee you soon", "\033[36mCatch you later!"]
@@ -113,12 +115,20 @@ while finished == False:
         if "hi" in command or "hey" in command or "hello" in command or "hai" in command:
             print(random.choice(helloResponse))
 
-        elif "how are you" in command or "hows it going" in command or "how's it going" in command or "whats up" in command or "what's up" in command or "how r u" in command:
+        elif "how are you" in command or "hows it going" in command or "how's it going" in command or "how r u" in command:
             print(random.choice(howAreYouResponse)) 
+
+        elif "whats up" in command or "what's up" in command or "ssup" in command or "what up" in command:
+            print(random.choice(whatsUpResponse)) 
+                
 
         elif "who are you" in command or "what are you" in command:
             print("\033[36mI am Alexis, your personal robot butler!") 
-	
+
+    # TicTacToe
+        elif "tic tac toe" in command or "x and o" in command or "xo" in command or "x n o" in command or "x and 0" in command:
+            # Execute the res/tictactoe.py file
+            from res import tictactoe
 
     # WEB BASED
         # Open sites in browser
@@ -257,7 +267,7 @@ while finished == False:
     # HELP
         # This will print everything in the file: AllCommands.txt
         elif "help" in command or "all commands" in command or "list command" in command:
-            with open('AllCommands.txt', 'r') as f:
+            with open('res/AllCommands.txt', 'r') as f:
                 print(f.read())
 
     # TURN ON SPEECH RECOGNITION
