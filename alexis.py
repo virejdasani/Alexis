@@ -126,7 +126,7 @@ while finished == False:
             print("\033[36mI am Alexis, your personal robot butler!") 
 
     # TicTacToe
-        elif "tic tac toe" in command or "x and o" in command or "xo" in command or "x n o" in command or "x and 0" in command:
+        elif "tic tac toe" in command or "x and o" in command or "xo" in command or "x n o" in command or "x and 0" in command or "tictactoe" in command:
             # Execute the res/tictactoe.py file
             from res import tictactoe
 
