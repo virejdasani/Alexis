@@ -18,10 +18,3 @@ The final goal for Alexis is to do everything from sending emails to telling you
 - The modules `wikipedia` and `SpeechRecognition` are required to run Alexis.     
 - To install them, run:`pip install wikipedia`, `pip install speechrecognition`.
 
-## Contributing
-### We need your help!
-- PR's are accepted!!
-- Fork the repo, work on it and make a PR. We will review it and get in touch within the day.
-- Don't forget to document what you have coded/made changes to, using comments.
-- We welcome all commits, big or small!
-- Your PR's will count towards your Hacktoberfest!
