@@ -2,16 +2,20 @@
 '''
 RULES
 '''
+'''
 # \033[36m (Blue) for all responses
 # \033[1;32;40m (Green) for 'Enter Command: ' phrase
+'''
 
 # KEYWORDS:
+'''
 # "open" is reserved to open websites in the browser
 # "search" is for wikipedia
 # "google" is to google search
-
+'''
 
 import datetime
+from datetime import date
 import random
 import webbrowser
 import wikipedia
@@ -24,14 +28,13 @@ import smtplib
 import getpass
 
 
-
 finished = False
 speechRecog = False
 
 
 # LISTS
 # Responses
-helloResponse = ["\033[36mHello to you too!", "\033[36mHey!", "\033[36mHola amigo", "\033[36mGood to see you!"] 
+helloResponse = ["\033[36mHello to you too!", "\033[36mHey!", "\033[36mGood to see you!"] 
 howAreYouResponse = ["\033[36mJust doing my thing!", "\033[36mI am great!", "\033[36mAmazing!", "\033[36mFeeling awesome!"]
 whatsUpResponse = ["\033[36mThe ceiling, the sky?", "\033[36mNothing much, just robot butler stuff...", "\033[36mJust personal assistant stuff..."]
 agreeResponse = ["\033[36mSure thing", "\033[36mOkay", "\033[36mFor sure", "\033[36mAlright"]        
@@ -67,7 +70,6 @@ def greet():
 # This prints one of the above three greetings before taking user input
 print(greet())    
 
-    
 
 # MAIN LOOP
 while finished == False:
@@ -124,6 +126,19 @@ while finished == False:
 
         elif "who are you" in command or "what are you" in command:
             print("\033[36mI am Alexis, your personal robot butler!") 
+        
+    # Date and Time
+        # Time
+        elif "time" in command:
+            time_now = datetime.datetime.now()
+            current_time = time_now.strftime("%H:%M")
+            print("\033[36mIt's currently", current_time)
+
+        # Date
+        elif "date" in command:
+            date_today = date.today()
+            date_today = date_today.strftime("%B %d, %Y")
+            print("\033[36mIt's", date_today) 
 
     # TicTacToe
         elif "tic tac toe" in command or "x and o" in command or "xo" in command or "x n o" in command or "x and 0" in command or "tictactoe" in command:
