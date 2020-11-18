@@ -6,6 +6,7 @@ Right now, in its early stages of development, it can't do much except open webs
 The final goal for Alexis is to do everything from sending emails to telling you a joke.
 
 ## Get Started
+- Check out Alexis on YouTube - https://youtu.be/LchUl9pueLw
 - Clone the repo and simply run `python alexis.py` for mac and windows or
 `python3 alexis.py` for linux.
 - Alternatively, head to the Builds folder and open the latest version of the directory. Simply run the alexis executable by typing: `./alexis` in the terminal or cmd.
