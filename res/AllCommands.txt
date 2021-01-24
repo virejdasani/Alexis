@@ -24,6 +24,7 @@ WEBSITES
     netflix
     amazon
     google classroom
+    twitter
 ------------------------------------------------------------------------------
 GAME
     # TicTacToe
