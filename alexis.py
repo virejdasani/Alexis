@@ -192,7 +192,7 @@ while finished == False:
                 print(random.choice(agreeResponse))
                 webbrowser.open('www.twitter.com')
 
-                # This is to open websites that are not in the list
+            # This is to open websites that are not in the list
             else:
                 if "www." in command or ".com" in command or ".in" in command or ".co" in command:
                     # It will open the url when command is: open {www.URL.com/co/in/etc}
