@@ -187,7 +187,11 @@ while finished == False:
 
             elif "google" in command:
                 print(random.choice(agreeResponse))
-                webbrowser.open('www.google.com')                
+                webbrowser.open('www.google.com')
+
+            elif "twitter" in command:
+                print(random.choice(agreeResponse))
+                webbrowser.open('www.twitter.com')
 
             # This is to open websites that are not in the list
             else:
