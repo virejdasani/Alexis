@@ -19,7 +19,8 @@ from datetime import date
 import random
 import webbrowser
 import wikipedia
-import speech_recognition as sr
+# import speech_recognition as sr
+
 # For request errors
 import requests
 # For email
@@ -55,7 +56,7 @@ def greet():
     # "\033[36m" shows the string in Cyan in the terminal
     # 12am to 11:59am
     if hour >= 0 and hour < 12 :
-        greeting = "\033[36m\nGood Moning, I am Alexis, your personal robot butler "
+        greeting = "\033[36m\nGood Morning, I am Alexis, your personal robot butler "
 
     # 12pm to 5:59pm 
     if hour >= 12 and hour < 18:
