@@ -15,6 +15,8 @@ The final goal for Alexis is to do everything from sending emails to telling you
 - The default method to give commands is by typing them. However, you can type in `speak` to turn on voice recognition.
 
 ## Installation
-- The modules `wikipedia` and `SpeechRecognition` are required to run Alexis.     
-- To install them, run:`pip install wikipedia`, `pip install speechrecognition`.
+- To run Alexis, you need to install some modules like this
+```
+$ pip install -r requirements.txt
+```
 
