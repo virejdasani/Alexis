@@ -148,7 +148,17 @@ if __name__ == '__main__':
             elif "google " in command:
                 print(random.choice(resconst.agreeResponse))
                 webbrowser.open('https://www.google.com/search?q=' + command[7:])
-
+                
+            # Definition of a word
+            elif "definition of " in command:
+                print(random.choice(resconst.agreeResponse))
+                webbrowser.open('https://www.dictionary.com/browse/' + command[14:])    
+                
+            # Synonym of a word
+            elif "synonym of " in command:
+                print(random.choice(resconst.agreeResponse))
+                webbrowser.open('https://www.thesaurus.com/browse/' + command[11:])  
+                
             # Wikipedia
             elif "search " in command:
                 try:
