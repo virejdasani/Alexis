@@ -18,6 +18,8 @@ WEBSITES
     youtube/yt
     spotify
     github/gh
+    definition
+    synonym
     gmail
     outlook/hotmail
     tempmail/fake email/temporary mail/tmpmail
