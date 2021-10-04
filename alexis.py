@@ -149,6 +149,11 @@ if __name__ == '__main__':
                 print(random.choice(resconst.agreeResponse))
                 webbrowser.open('https://www.google.com/search?q=' + command[7:])
                 
+            # Amazon search
+            elif "amazon " in command:
+                print(random.choice(resconst.agreeResponse))
+                webbrowser.open('https://www.amazon.com/s?k=' + command[7:])
+                
             # Definition of a word
             elif "definition of " in command:
                 print(random.choice(resconst.agreeResponse))
