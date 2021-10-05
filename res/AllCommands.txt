@@ -13,6 +13,7 @@ WEBSITES
     # If the site isn't on the list, type 'open' followed by the URL
     # To google something, type: 'google' followed by the search term
     # To search on wikipedia, type: 'search' followed by the search term
+    # To search on amazon, type: 'amazon' followed by the search term
 
     google
     youtube/yt
