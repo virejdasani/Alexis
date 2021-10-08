@@ -13,7 +13,7 @@ import smtplib
 # For getting password anonymously
 import getpass
 from utils import response_consts as resconst
-from utils import web_behaviour
+# from utils import web_behaviour
 from utils.tictactoe import TicTacToe
 
 '''
@@ -142,7 +142,10 @@ if __name__ == '__main__':
             # WEB BASED
             # Open sites in browser
             elif "open " in command:
-                web_behaviour.open_website(command)
+                if "http" in command:
+                    webbrowser.open(command[5:])
+                else:
+                    webbrowser.open("https://" + command[5:])
 
             # Google search
             elif "google " in command:
