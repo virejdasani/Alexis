@@ -52,6 +52,10 @@ def open_website(command: str) -> None:
     elif "twitter" in command:
         print(random.choice(resconst.agreeResponse))
         webbrowser.open('www.twitter.com')
+     
+    elif "instagram" in command:
+        print(random.choice(resconst.agreeResponse))
+        webbrowser.open('www.instagram.com')
 
     # This is to open websites that are not in the list
     else:
