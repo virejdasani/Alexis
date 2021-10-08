@@ -13,7 +13,6 @@ import smtplib
 # For getting password anonymously
 import getpass
 from utils import response_consts as resconst
-# from utils import web_behaviour
 from utils.tictactoe import TicTacToe
 
 '''
