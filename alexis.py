@@ -155,6 +155,11 @@ if __name__ == '__main__':
             elif "amazon " in command:
                 print(random.choice(resconst.agreeResponse))
                 webbrowser.open('https://www.amazon.com/s?k=' + command[7:])
+
+            # eBay search
+            elif "ebay " in command:
+                print(random.choice(resconst.agreeResponse))
+                webbrowser.open('https://www.ebay.com/sch/i.html?_nkw=' + command[5:])
                 
             # Definition of a word
             elif "definition of " in command:
