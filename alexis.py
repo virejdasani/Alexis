@@ -156,7 +156,7 @@ if __name__ == '__main__':
                 print(random.choice(resconst.agreeResponse))
                 webbrowser.open('https://www.amazon.com/s?k=' + command[7:])
 
-            #Ebay search
+            # eBay search
             elif "ebay " in command:
                 print(random.choice(resconst.agreeResponse))
                 webbrowser.open('https://www.ebay.com/sch/i.html?_nkw=' + command[5:])
