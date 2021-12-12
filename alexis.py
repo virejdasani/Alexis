@@ -247,6 +247,18 @@ if __name__ == '__main__':
                 except:
                     print(random.choice(resconst.errorResponse))
 
+            #Facts
+            elif "fact" in command:
+                # Try getting a fact
+                try:
+                    r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
+                    activity = r['data']['fact']
+                    print("\033[34m" + activity)
+                    
+                # In case of an error
+                except:
+                    print(random.choice(resconst.errorResponse)) 
+
             # HELP
             # This will print everything in the file: AllCommands.txt
             elif "help" in command or "all commands" in command or "list command" in command:
