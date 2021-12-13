@@ -63,6 +63,11 @@ def greet() -> str:
     
     return greeting
 
+def upperToCapitalize(txtAct):
+    if not txtAct.isupper():
+        return txtAct
+    txtAct = (txtAct.lower()).capitalize()
+    return txtAct
 
 # MAIN LOOP
 if __name__ == '__main__':
@@ -248,11 +253,11 @@ if __name__ == '__main__':
                     print(random.choice(resconst.errorResponse))
 
             #Facts
-            elif "fact" in command:
+            elif "fact" in command:                
                 # Try getting a fact
                 try:
                     r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
-                    activity = r['data']['fact']
+                    activity = upperToCapitalize(r['data']['fact'])
                     print("\033[34m" + activity)
                     askForInput = True
                     while askForInput == True:
@@ -261,7 +266,7 @@ if __name__ == '__main__':
                         # Repeat same to display another fact
                         if anotherOne in agreeInput:
                             r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
-                            activity = r['data']['fact']
+                            activity = upperToCapitalize(r['data']['fact'])
                             print("\033[34m" + activity)
                             askForInput = True
                         else:
