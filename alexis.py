@@ -63,11 +63,9 @@ def greet() -> str:
     
     return greeting
 
+# This function  takes a string as an input and if the input string is fully in uppercase, 
+# returns a new string lowercased and capitalized. If not returns string unchanged.
 def upperToCapitalize(txtAct):
-    """
-    Function that takes a string as an input and if the input string is fully in uppercase, 
-    returns a new string lowercased and capitalized. If not returns string unchanged.
-    """
     if not txtAct.isupper():
         return txtAct
     txtAct = (txtAct.lower()).capitalize()
