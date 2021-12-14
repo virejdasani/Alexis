@@ -261,12 +261,13 @@ if __name__ == '__main__':
                         r = requests.get('https://dog.ceo/api/breeds/image/random').json()
                         picture_url = r['message']
                         webbrowser.open(picture_url)
-                    
-                    if obj == 'cat':
+                    elif obj == 'cat':
                         print(random.choice(resconst.agreeResponse))
                         r = requests.get('https://api.thecatapi.com/v1/images/search').json()
                         picture_url = r[0]['url']
                         webbrowser.open(picture_url)
+                    else:
+                        print("\033[34m" + "The list available to show is: " + "\033[36m" + "dog, cat")
              
                 # In case of an error        
                 except:
