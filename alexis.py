@@ -63,6 +63,13 @@ def greet() -> str:
     
     return greeting
 
+# This function  takes a string as an input and if the input string is fully in uppercase, 
+# returns a new string lowercased and capitalized. If not returns string unchanged.
+def upperToCapitalize(txtAct):
+    if not txtAct.isupper():
+        return txtAct
+    txtAct = (txtAct.lower()).capitalize()
+    return txtAct
 
 # MAIN LOOP
 if __name__ == '__main__':
@@ -246,6 +253,51 @@ if __name__ == '__main__':
                 # In case of an error
                 except:
                     print(random.choice(resconst.errorResponse))
+
+            # Show 
+            elif "show" in command:
+                try:
+                    obj = command[5:]
+                    if obj == 'dog':
+                        print(random.choice(resconst.agreeResponse))
+                        r = requests.get('https://dog.ceo/api/breeds/image/random').json()
+                        picture_url = r['message']
+                        webbrowser.open(picture_url)
+                    elif obj == 'cat':
+                        print(random.choice(resconst.agreeResponse))
+                        r = requests.get('https://api.thecatapi.com/v1/images/search').json()
+                        picture_url = r[0]['url']
+                        webbrowser.open(picture_url)
+                    else:
+                        print("\033[34m" + "The list available to show is: " + "\033[36m" + "dog, cat")
+             
+                # In case of an error        
+                except:
+                    print(random.choice(resconst.errorResponse))
+                
+            #Facts
+            elif "fact" in command:                
+                # Try getting a fact
+                try:
+                    r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
+                    activity = upperToCapitalize(r['data']['fact'])
+                    print("\033[34m" + activity)
+                    askForInput = True
+                    while askForInput == True:
+                        # If user wants another fact
+                        anotherOne = input("\033[36mAnother one?(Yes/No)\n").lower()
+                        # Repeat same to display another fact
+                        if anotherOne in agreeInput:
+                            r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
+                            activity = upperToCapitalize(r['data']['fact'])
+                            print("\033[34m" + activity)
+                            askForInput = True
+                        else:
+                            askForInput = False
+                    
+                # In case of an error
+                except:
+                    print(random.choice(resconst.errorResponse)) 
 
             # HELP
             # This will print everything in the file: AllCommands.txt
