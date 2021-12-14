@@ -265,8 +265,13 @@ if __name__ == '__main__':
                         anotherOne = input("\033[36mAnother one?(Yes/No)\n").lower()
                         # Repeat same to display another fact
                         if anotherOne in agreeInput:
-                            r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
-                            activity = upperToCapitalize(r['data']['fact'])
+                            #Avoid direct repeat of a fact
+                            while True:
+                                activity_temp = activity
+                                r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
+                                activity = upperToCapitalize(r['data']['fact'])
+                                if activity != activity_temp:
+                                    break
                             print("\033[34m" + activity)
                             askForInput = True
                         else:
