@@ -257,11 +257,13 @@ if __name__ == '__main__':
                 try:
                     obj = command[5:]
                     if obj == 'dog':
+                        print(random.choice(resconst.agreeResponse))
                         r = requests.get('https://dog.ceo/api/breeds/image/random').json()
                         picture_url = r['message']
                         webbrowser.open(picture_url)
                     
                     if obj == 'cat':
+                        print(random.choice(resconst.agreeResponse))
                         r = requests.get('https://api.thecatapi.com/v1/images/search').json()
                         picture_url = r[0]['url']
                         webbrowser.open(picture_url)
@@ -283,13 +285,8 @@ if __name__ == '__main__':
                         anotherOne = input("\033[36mAnother one?(Yes/No)\n").lower()
                         # Repeat same to display another fact
                         if anotherOne in agreeInput:
-                            #Avoid direct repeat of a fact
-                            while True:
-                                activity_temp = activity
-                                r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
-                                activity = upperToCapitalize(r['data']['fact'])
-                                if activity != activity_temp:
-                                    break
+                            r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
+                            activity = upperToCapitalize(r['data']['fact'])
                             print("\033[34m" + activity)
                             askForInput = True
                         else:
