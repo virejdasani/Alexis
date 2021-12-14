@@ -252,6 +252,24 @@ if __name__ == '__main__':
                 except:
                     print(random.choice(resconst.errorResponse))
 
+            # Show 
+            elif "show" in command:
+                try:
+                    obj = command[5:]
+                    if obj == 'dog':
+                        r = requests.get('https://dog.ceo/api/breeds/image/random').json()
+                        picture_url = r['message']
+                        webbrowser.open(picture_url)
+                    
+                    if obj == 'cat':
+                        r = requests.get('https://api.thecatapi.com/v1/images/search').json()
+                        picture_url = r[0]['url']
+                        webbrowser.open(picture_url)
+             
+                # In case of an error        
+                except:
+                    print(random.choice(resconst.errorResponse))
+                
             #Facts
             elif "fact" in command:                
                 # Try getting a fact
