@@ -63,6 +63,11 @@ def greet() -> str:
     
     return greeting
 
+def upperToCapitalize(txtAct):
+    if not txtAct.isupper():
+        return txtAct
+    txtAct = (txtAct.lower()).capitalize()
+    return txtAct
 
 # MAIN LOOP
 if __name__ == '__main__':
@@ -265,6 +270,29 @@ if __name__ == '__main__':
                 except:
                     print(random.choice(resconst.errorResponse))
                 
+            #Facts
+            elif "fact" in command:                
+                # Try getting a fact
+                try:
+                    r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
+                    activity = upperToCapitalize(r['data']['fact'])
+                    print("\033[34m" + activity)
+                    askForInput = True
+                    while askForInput == True:
+                        # If user wants another fact
+                        anotherOne = input("\033[36mAnother one?(Yes/No)\n").lower()
+                        # Repeat same to display another fact
+                        if anotherOne in agreeInput:
+                            r = requests.get('https://asli-fun-fact-api.herokuapp.com/').json()
+                            activity = upperToCapitalize(r['data']['fact'])
+                            print("\033[34m" + activity)
+                            askForInput = True
+                        else:
+                            askForInput = False
+                    
+                # In case of an error
+                except:
+                    print(random.choice(resconst.errorResponse)) 
 
             # HELP
             # This will print everything in the file: AllCommands.txt
