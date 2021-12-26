@@ -71,47 +71,7 @@ def upperToCapitalize(txtAct):
     txtAct = (txtAct.lower()).capitalize()
     return txtAct
 
-# MAIN LOOP
-if __name__ == '__main__':
-    # This prints one of the above three greetings before taking user input
-    print(greet())
-
-    while not finished:
-        while speechRecog:
-            with sr.Microphone() as source:
-
-                # Recognisers for speech recognition
-                r1 = sr.Recognizer()
-                r2 = sr.Recognizer()
-
-                # This will prompt user for speech input in green color and not go to the next line
-                print("\n\033[1;32;40mSpeak Command: ", end="")
-
-                # Try to get speech input from user
-                try:
-                    audio = r1.listen(source)
-                    recognised = r2.recognize_google(audio)
-                    # Make the speech lowercase for simplicity
-                    command = recognised.lower()
-                    # Print exactly what user said
-                    print(recognised)
-
-                except sr.UnknownValueError:
-                    # This will prompt user for text input in green color and not go to the next line
-                    print("\n\033[1;32;40mSpeech not recognised to Type Commands, say 'type' or enter it here: ", end="")
-
-                except sr.RequestError as e:
-                    # This will prompt user for text input in green color and not go to the next line
-                    print("\n\033[1;32;40mSpeech not recognised to Type Commands, say 'type' or enter it here: ", end="")
-
-        # This is the default setting - typing commands
-        # This is for when voice commands are disabled
-        while not speechRecog:
-            # This will prompt user for text input in green color and not go to the next line
-            print("\n\033[1;32;40mType Command: ", end="")
-            # Take input from user in yellow color
-            command = input("\033[33m").lower()
-
+def alexisCommand(command):
             # ADD POSSIBLE USER COMMANDS HERE
             # GENERAL
             if "hi" in command or "hey" in command or "hello" in command or "hai" in command:
@@ -320,6 +280,51 @@ if __name__ == '__main__':
             # UNRECOGNISED COMMAND
             else:
                 print(f"{random.choice(resconst.unrecognisedCommandResponse)}. Type 'help' to see the list of commands")
+
+# MAIN LOOP
+if __name__ == '__main__':
+    # This prints one of the above three greetings before taking user input
+    print(greet())
+
+    while not finished:
+        while speechRecog:
+            with sr.Microphone() as source:
+
+                # Recognisers for speech recognition
+                r1 = sr.Recognizer()
+                r2 = sr.Recognizer()
+
+                # This will prompt user for speech input in green color and not go to the next line
+                print("\n\033[1;32;40mSpeak Command: ", end="")
+
+                # Try to get speech input from user
+                try:
+                    audio = r1.listen(source)
+                    recognised = r2.recognize_google(audio)
+                    # Make the speech lowercase for simplicity
+                    command = recognised.lower()
+                    # Print exactly what user said
+                    print(recognised)
+                    
+                    alexisCommand(command)
+
+                except sr.UnknownValueError:
+                    # This will prompt user for text input in green color and not go to the next line
+                    print("\n\033[1;32;40mSpeech not recognised to Type Commands, say 'type' or enter it here: ", end="")
+
+                except sr.RequestError as e:
+                    # This will prompt user for text input in green color and not go to the next line
+                    print("\n\033[1;32;40mSpeech not recognised to Type Commands, say 'type' or enter it here: ", end="")
+
+        # This is the default setting - typing commands
+        # This is for when voice commands are disabled
+        while not speechRecog:
+            # This will prompt user for text input in green color and not go to the next line
+            print("\n\033[1;32;40mType Command: ", end="")
+            # Take input from user in yellow color
+            command = input("\033[33m").lower()
+
+            alexisCommand(command)
 
 
 #  MADE BY:_            _   _____                        _ 
