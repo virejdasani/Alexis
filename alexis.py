@@ -281,6 +281,8 @@ def alexisCommand(command):
             else:
                 print(f"{random.choice(resconst.unrecognisedCommandResponse)}. Type 'help' to see the list of commands")
 
+speechRecog = True
+
 # MAIN LOOP
 if __name__ == '__main__':
     # This prints one of the above three greetings before taking user input
