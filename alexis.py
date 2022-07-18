@@ -5,6 +5,8 @@ import random
 import webbrowser
 import wikipedia
 import speech_recognition as sr
+from googletrans import Translator, constants
+from pprint import pprint
 
 # For request errors
 import requests
@@ -298,6 +300,16 @@ if __name__ == '__main__':
                 # In case of an error
                 except:
                     print(random.choice(resconst.errorResponse)) 
+
+            # Translate
+            elif "translate" and "english" in command:
+                translator = Translator()
+                askForInput = True
+                if askForInput == True:
+                    phraseToTranslate = input("\033[WWhat is the phrase you would like to translate to English?\n").lower()
+                    translation = translator.translate(phraseToTranslate)
+                    print(f"\033[36m\n{translation.origin} translates to {translation.text}")
+                    askForInput == False
 
             # HELP
             # This will print everything in the file: AllCommands.txt
