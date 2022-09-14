@@ -35,8 +35,8 @@ speechRecog = False
 
 
 # Inputs
-agreeInput = ["yes", "y", "sure", "yep"]
-disagreeInput = ["no", "n", "nope"]
+agreeInput = ["yes", "y", "sure", "yep", "why not", "alright"]
+disagreeInput = ["no", "n", "nope", "nah"]
 
 
 def greet() -> str:
@@ -212,7 +212,19 @@ if __name__ == '__main__':
                     print("\033[36mSent!")
                 except:
                     print(random.choice(resconst.errorResponse))
-
+            
+            #Help Choose between two
+            elif "help me choose" in command or "pick between two" in command or "one or two" in command:
+                #inputing the choices
+                ItemOne= string(input("What is the first choice?"))
+                ItemTwo= string(input("Hm, and what's the other choice?"))
+                #using random.randint()
+                OneOrTwo= random.randint(1,2)
+                if(OneOrTwo==1):
+                        print("Randomly picking, I'd opt for:", ItemOne , "!")
+                if(OneOrTwo==2):
+                        print("Randomly picking, I'd opt for:", ItemTwo , "!")        
+            
             # API BASED
             # Bored
             elif "bored" in command:
