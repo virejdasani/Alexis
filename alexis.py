@@ -150,6 +150,8 @@ if __name__ == '__main__':
             elif "open " in command:
                 if "http" in command:
                     webbrowser.open(command[5:])
+                elif "tempmail" in command:
+                    webbrowser.open("https://temp-mail.org/en/")
                 else:
                     webbrowser.open("https://" + command[5:])
 
