@@ -152,6 +152,22 @@ if __name__ == '__main__':
                     webbrowser.open(command[5:])
                 elif "tempmail" in command:
                     webbrowser.open("https://temp-mail.org/en/")
+                elif "youtube" or "yt" in command:
+                    webbrowser.open("https://youtube.com")
+                elif "spotify" or "song" in command:
+                    webbrowser.open("https://spotify.com")
+                elif "github" or "gh" in command:
+                    webbrowser.open("https://github.com")
+                elif gmail in command:
+                    webbrowser.open("https://mail.google.com/")
+                elif netflix in command:
+                    webbrowser.open("https://netflix.com")
+                elif amazon in command:
+                    webbrowser.open("https://amazon.com")
+                elif "google classroom" or "classroom" in command:
+                    webbrowser.open("https://edu.google.com/intl/en-GB/workspace-for-education/classroom/")
+                elif twitter in command:
+                    webbrowser.open("https://twitter.com")
                 else:
                     webbrowser.open("https://" + command[5:])
 
