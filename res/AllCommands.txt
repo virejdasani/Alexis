@@ -34,6 +34,9 @@ WEBSITES
 GAME
     # TicTacToe
     tictactoe/tic tac toe/x and o/xo/x n o
+
+    # RockPaperScissors
+    Rock Paper Scissors/rock paper scissors/rockpaperscissors
 ------------------------------------------------------------------------------
 EMAIL
 	# Alexis can send emails via the command line!

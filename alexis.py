@@ -14,6 +14,7 @@ import smtplib
 import getpass
 from utils import response_consts as resconst
 from utils.tictactoe import TicTacToe
+from utils.rock_paper_scissors import RockPaperScissors
 
 '''
 RULES
@@ -143,6 +144,11 @@ if __name__ == '__main__':
             elif "tic tac toe" in command or "x and o" in command or "xo" in command or "x n o" in command \
                     or "x and 0" in command or "tictactoe" in command:
                 game_instance = TicTacToe()
+                game_instance.start_game()
+
+            # RockPaperScissors
+            elif "Rock Paper Scissors" in command or "rock paper scissors" in command or "rockpaperscissors" in command:
+                game_instance = RockPaperScissors()
                 game_instance.start_game()
 
             # WEB BASED
