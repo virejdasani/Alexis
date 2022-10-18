@@ -321,7 +321,30 @@ if __name__ == '__main__':
                     
                 # In case of an error
                 except:
-                    print(random.choice(resconst.errorResponse)) 
+                    print(random.choice(resconst.errorResponse))
+
+            #Zip Code
+            elif "zip" in command:
+                #Get information about a zip code
+                try:
+                    zip_code = input("Type your zip code:\n")
+                    r = requests.get(f'https://api.zippopotam.us/us/{zip_code}').json()
+                    activity = r["places"][0]['place name'] + " " + r["places"][0]["state abbreviation"] + " " + r["country"]
+                    print("\033[34m" +activity)
+                    askForInput = True
+                    while askForInput == True:
+                        # If user wants to check another zip code
+                        anotherOne = input("\033[36mDo you want to check another zip code?(Yes/No)\n").lower()
+                        if anotherOne == "yes":
+                            zip_code = input("Type your zip code:\n")
+                            r = requests.get(f'https://api.zippopotam.us/us/{zip_code}').json()
+                            activity = r["places"][0]['place name'] + " " + r["places"][0]["state abbreviation"] + " " + r["country"]
+                            print("\033[34m" +activity)
+                        else:
+                            askForInput = False
+                except:
+                    print(random.choice(resconst.errorResponse))
+
 
             # HELP
             # This will print everything in the file: AllCommands.txt
