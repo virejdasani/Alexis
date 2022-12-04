@@ -5,7 +5,9 @@ from scipy.signal import convolve2d
 
 class ConnectFour():
     def __init__(self):
-        #initialize board
+        """
+        Initializes the player boards
+        """
         self.player_one_board = self.initialize_board()
         self.player_two_board = self.initialize_board()
     
@@ -19,32 +21,32 @@ class ConnectFour():
         board = np.zeros((6,7))
         return board
 
-    def make_move(self, board, selected_row):
+    def make_move(self, board, selected_column):
         """
-        Checks the location of the move given a specified row on the board
+        Checks the location of the move given a specified column on the board
 
         Args:
             board (np.ndarray): 6x7 board containing all player moves 
-            selected_row (int): specifies a row within the board
+            selected_column (int): specifies a column within the board
 
         Returns:
-            None: Returns None if the row has been completly filled up
+            None: Returns None if the column has been completly filled up
             Tuple: Returns the (X,Y) coordinates if a move can be made
         """
         try:
-            selected_row = int(selected_row)
+            selected_column = int(selected_column)
         except:
             return None
 
-        if selected_row < 0 or selected_row > 6:
+        if selected_column < 0 or selected_column > 6:
             return None
 
-        x_loc = selected_row
+        x_loc = selected_column
         y_loc = None
-        board_row = board.T[selected_row]
+        board_column = board.T[selected_column]
 
-        for i in range(len(board_row)-1, -1, -1):
-            if board_row[i] == 0:
+        for i in range(len(board_column)-1, -1, -1):
+            if board_column[i] == 0:
                 y_loc = i
                 break
 
@@ -107,7 +109,7 @@ class ConnectFour():
             turn_counter += 1
 
             #Ask for player input
-            selection = input(f"Player {player}, select your row (0-6):")
+            selection = input(f"Player {player}, select your column (0-6):")
             
             # Check for surrender
             if selection == "ff":
@@ -118,7 +120,7 @@ class ConnectFour():
             # Process selected move
             move = self.make_move(merged_board, selection)
             while move is None:
-                selection = input("\tThat was an invalid move, select your row (0-6):")
+                selection = input("\tThat was an invalid move, select your column (0-6):")
                 move = self.make_move(merged_board, selection)
 
             # Record player move

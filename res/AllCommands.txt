@@ -39,7 +39,7 @@ GAME
     Rock Paper Scissors/rock paper scissors/rockpaperscissors
 
     # ConnectFour
-    Connect Four/ConnectFour/connectfour/connectfour
+    Connect Four/ConnectFour/connect four/connectfour
 ------------------------------------------------------------------------------
 EMAIL
 	# Alexis can send emails via the command line!
