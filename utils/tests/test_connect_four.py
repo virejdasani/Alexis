@@ -1,7 +1,6 @@
 import pytest, numpy as np
-from unittest.mock import patch, call, Mock
+from unittest.mock import patch, Mock
 import builtins
-import sys
 from utils.connect_four import ConnectFour
 
 
@@ -16,14 +15,14 @@ class TestConnectFour:
         assert (game.player_two_board == np.zeros((6,7))).all()
 
     @pytest.mark.parametrize("move, expected_res", [
-                                                        [[0],(0, 5)], 
-                                                        [[1],(1, 5)], 
-                                                        [[2],(2, 5)],
-                                                        [[0,0],(0, 4)],
-                                                        [[9],None], # Check illegal move
-                                                        [[-1],None], # Check illegal move
-                                                        [['dummyinputstring'],None] # Check illegal move
-                                                        ])
+                                                    [[0],(0, 5)], # Legal Move
+                                                    [[1],(1, 5)], # Legal Move
+                                                    [[2],(2, 5)], # Legal Move
+                                                    [[0,0],(0, 4)], # Legal Move
+                                                    [[9],None], # Check illegal move
+                                                    [[-1],None], # Check illegal move
+                                                    [['dummyinputstring'],None] # Check illegal move
+                                                    ])
     def test_make_move(self,move, expected_res):
         """
         Test that user input is correctly converted to a move, and that the move is valid and applied to the board.
@@ -43,7 +42,7 @@ class TestConnectFour:
                                                     [[(0,0),(0,1),(0,2),(0,3)],True], #Check horizontal win
                                                     [[(0,0),(1,1),(2,2),(3,3)],True], #Check diag win
                                                     [[(0,0),(2,2),(3,3)],False],      #Check impossible board is false
-                                                    [[(0,0),(0,2),(0,3)],False]      #Check impossible board is false
+                                                    [[(0,0),(0,2),(0,3)],False]       #Check impossible board is false
                                                     ])
     def test_check_win_condition(self,moves, expected_res):
         """
