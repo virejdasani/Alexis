@@ -85,7 +85,7 @@ class ConnectFour():
         Returns:
             np.ndarray: Board containing both players moves with distinction
         """
-        merged_board = np.zeros_like(self.player_one_board)
+        merged_board = np.zeros_like(self.player_one_board, dtype=np.int8)
         merged_board[self.player_one_board == 1] = 1
         merged_board[self.player_two_board == 1] = 2
         return merged_board
@@ -100,7 +100,8 @@ class ConnectFour():
         while not game_over:
             merged_board = self.get_merged_board()
             print(f"\n{merged_board}")
-            print(" |0 |1 |2 |3 |4 |5 |6 |")
+            print(" ---------------")
+            print(" |0|1|2|3|4|5|6|")
 
             player = (turn_counter % 2) + 1
             turn_counter += 1
