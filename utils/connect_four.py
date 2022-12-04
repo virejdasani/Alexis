@@ -113,7 +113,8 @@ class ConnectFour():
             
             # Check for surrender
             if selection == "ff":
-                print(f"Player {player} has forfeited! Player {1 if player == 2 else 2} wins!")
+                winning_player = 1 if player == 2 else 2
+                print(f"Player {player} has forfeited! Player {winning_player} wins!")
                 game_over = True
                 break
 
@@ -143,3 +144,5 @@ class ConnectFour():
             merged_board = self.get_merged_board()
             print(f"\n{merged_board}")
             print(f"Player {winning_player} has won!")
+        self.winning_player = winning_player
+        return
