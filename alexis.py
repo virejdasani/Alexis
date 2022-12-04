@@ -5,6 +5,7 @@ import random
 import webbrowser
 import wikipedia
 import speech_recognition as sr
+import pytube
 
 # For request errors
 import requests
@@ -156,6 +157,37 @@ if __name__ == '__main__':
             elif "Connect Four" in command or "ConnectFour" in command or "connect four" in command or "connectfour" in command:
                 game_instance = ConnectFour()
                 game_instance.start_game()
+
+            # Download YouTube video
+            elif "download youtube video" in command or "download video" in command or "mp4" in command:
+                # Ask for YouTube video link
+                url = input("\033[33mEnter the URL of the video you want to download: ")
+                try:
+                    yt = pytube.YouTube(url)
+                    ys = yt.streams.filter(progressive=True, file_extension="mp4").order_by('resolution').desc().first()
+                    # Ask for the path to save the video
+                    path = input("\033[33mEnter the path to save the video: ")
+                    # Download the video
+                    ys.download(path)
+                    print("\033[36mVideo downloaded successfully!")
+                except Exception as e:
+                    print("\033[36mVideo download failed! Error: ", e)
+
+            # Get YouTube video information
+            elif "video stats" in command or "video info" in command or "video information" in command or "video statistics" in command:
+                # Ask for YouTube video link
+                url = input("\033[33mEnter the URL of the video you want to get information about: ")
+                try:
+
+                    yt = pytube.YouTube(url)
+                    print("\033[36mTitle:          ", yt.title)
+                    print("Views:          ", yt.views)
+                    print("Length:         ", yt.length)
+                    print("Publish Date:   ", yt.publish_date)
+                    print("Author:         ", yt.author)
+                    print("Age Restricted: ", yt.age_restricted)
+                except Exception as e:
+                    print("\033[36mVideo information retrieval failed! Error: ", e)
 
             # WEB BASED
             # Open sites in browser

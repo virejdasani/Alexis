@@ -9,6 +9,8 @@ GENERAL
     show dog/cat
     Date
     Time
+    download youtube video/download video/mp4
+    video stats/video info/video information/video statistics
 ------------------------------------------------------------------------------
 WEBSITES
     # To open websites that are on our list, type 'open' followed by name of site.
