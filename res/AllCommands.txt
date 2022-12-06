@@ -18,6 +18,7 @@ WEBSITES
     # To google something, type: 'google' followed by the search term
     # To search on wikipedia, type: 'search' followed by the search term
     # To search on amazon, type: 'amazon' followed by the search term
+    # To search on google Maps, type: 'where is' followed by the search term
 
     google
     youtube/yt
