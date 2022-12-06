@@ -238,6 +238,7 @@ if __name__ == '__main__':
             elif "where is " in command:
                 print(random.choice(resconst.agreeResponse))
                 webbrowser.open('https://www.google.com/maps/search/' + command[9:])
+            
             # Wikipedia
             elif "search " in command:
                 try:
