@@ -1,7 +1,7 @@
 import numpy as np
 
 from scipy.signal import convolve2d
-
+import os 
 
 class ConnectFour():
     def __init__(self):
@@ -10,7 +10,10 @@ class ConnectFour():
         """
         self.player_one_board = self.initialize_board()
         self.player_two_board = self.initialize_board()
-    
+
+    def _clear(self): # private method to clear terminal lines for overwriting old game board in terminal
+        os.system('cls' if os.name=='nt' else 'clear')
+
     def initialize_board(self):
         """
         Initializes an empty board of 6x7
@@ -92,6 +95,40 @@ class ConnectFour():
         merged_board[self.player_two_board == 1] = 2
         return merged_board
 
+    def display_board(self,grid_size,board_info,empty_char = '~', player1_char = 'X', player2_char = 'O'):
+        """
+        Display a board in a larger more user friendly format
+
+        Args:
+            grid_size 2-tuple (rows, columns): Size of desired board grid
+            board_info (np.ndarray): Board containing both players moves information
+            empty_char (optional, default ~): character to represent empty board slot
+            player1_char (optional, default X): character to represent player 1 placed slot
+            player2_char (optional, default O): character to represent player 2 placed slot
+
+        Returns:
+            None: prints updated board to console
+        """
+        # First row
+        print(f" ", end='')
+        for j in range(grid_size[1]):
+            print(f"| {j} ", end='')
+        print("| ")
+        print((grid_size[1]*4+4)*"-")
+
+        # Other rows
+        for i in range(grid_size[0]):
+            print(f" ", end='')
+            for j in range(grid_size[1]):
+                if board_info[i][j] == 1:
+                    print(f"| {player1_char} ", end='')
+                elif board_info[i][j] == 2:
+                    print(f"| {player2_char} ", end='')
+                else:
+                    print(f"| {empty_char} ", end='')
+            print("| ")
+
+
     def start_game(self):
         """
         Main code to run the connect four game
@@ -99,17 +136,20 @@ class ConnectFour():
         turn_counter = 0
         game_over = False
         winning_player = None
+        player1_icon = 'X' # Character in grid to represent player 1, Must be ONE letter character or else grid will be misaligned
+        player2_icon = 'O' # Character in grid to represent player 2, Must be ONE letter character or else grid will be misaligned
         while not game_over:
             merged_board = self.get_merged_board()
-            print(f"\n{merged_board}")
-            print(" ---------------")
-            print(" |0|1|2|3|4|5|6|")
-
+            self._clear() #clear terminal so one board exists
+            self.display_board((6,7),merged_board, player1_char=player1_icon, player2_char=player2_icon)
             player = (turn_counter % 2) + 1
             turn_counter += 1
-
+            if player == 1:
+                player_icon = player1_icon
+            else:
+                player_icon = player2_icon
             #Ask for player input
-            selection = input(f"Player {player}, select your column (0-6):")
+            selection = input(f"Player {player} ({player_icon}), select your column (0-6):")
             
             # Check for surrender
             if selection == "ff":
@@ -142,7 +182,7 @@ class ConnectFour():
             print("The board has been filled, it's a tie!")
         else:
             merged_board = self.get_merged_board()
-            print(f"\n{merged_board}")
+            self.display_board((6,7),merged_board, player1_char=player1_icon, player2_char=player2_icon)
             print(f"Player {winning_player} has won!")
         self.winning_player = winning_player
         return
