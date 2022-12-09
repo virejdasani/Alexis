@@ -16,6 +16,7 @@ import getpass
 from utils import response_consts as resconst
 from utils.tictactoe import TicTacToe
 from utils.rock_paper_scissors import RockPaperScissors
+from utils.connect_four import ConnectFour
 
 '''
 RULES
@@ -150,6 +151,11 @@ if __name__ == '__main__':
             # RockPaperScissors
             elif "Rock Paper Scissors" in command or "rock paper scissors" in command or "rockpaperscissors" in command:
                 game_instance = RockPaperScissors()
+                game_instance.start_game()
+            
+            # ConnectFour
+            elif "Connect Four" in command or "ConnectFour" in command or "connect four" in command or "connectfour" in command:
+                game_instance = ConnectFour()
                 game_instance.start_game()
 
             # Download YouTube video
