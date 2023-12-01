@@ -11,6 +11,7 @@ GENERAL
     Time
     download youtube video/download video/mp4
     video stats/video info/video information/video statistics
+    weather - get current weather information for a city
 ------------------------------------------------------------------------------
 WEBSITES
     # To open websites that are on our list, type 'open' followed by name of site.
