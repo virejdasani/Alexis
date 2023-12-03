@@ -11,6 +11,8 @@ import pytube
 import requests
 # For email
 import smtplib
+# For system stats
+import psutil
 # For getting password anonymously
 import getpass
 from utils import response_consts as resconst
@@ -141,6 +143,23 @@ if __name__ == '__main__':
                 date_today = date.today()
                 date_today = date_today.strftime("%B %d, %Y")
                 print("\033[36mIt's", date_today)
+
+            # System information / vitals
+            elif "vitals" in command:
+                try:
+                    print("Diagnosing system to collect vital stats")
+
+                    # Get CP usage
+                    print(f"The CPU usage is: {psutil.cpu_percent(4)} %") # We get the CPU usage for the past 4 seconds
+
+                    # Get memory usage
+                    print(f"RAM memory used: {psutil.virtual_memory()[2]} %")
+
+                    # Get battery percentage
+                    battery_status = psutil.sensors_battery()
+                    print(f"Percentage of battery: {battery_status.percent} %")
+                except:
+                    print("An error occurred while collecting system vitals")
 
             # TicTacToe
             elif "tic tac toe" in command or "x and o" in command or "xo" in command or "x n o" in command \
