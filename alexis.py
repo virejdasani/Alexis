@@ -149,7 +149,7 @@ if __name__ == '__main__':
                 try:
                     print("Diagnosing system to collect vital stats")
 
-                    # Get CP usage
+                    # Get CPU usage
                     print(f"The CPU usage is: {psutil.cpu_percent(4)} %") # We get the CPU usage for the past 4 seconds
 
                     # Get memory usage
