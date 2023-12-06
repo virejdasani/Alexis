@@ -13,6 +13,7 @@ GENERAL
     video stats/video info/video information/video statistics
     convert currency - To convert currency, type 'convert currency' and follow the prompts
     world clock
+    weather - get current weather information for a city
 ------------------------------------------------------------------------------
 WEBSITES
     # To open websites that are on our list, type 'open' followed by name of site.
@@ -50,6 +51,12 @@ GAME
 EMAIL
 	# Alexis can send emails via the command line!
 	send mail/email/e-mail
+------------------------------------------------------------------------------
+TRANSLATE
+	# Alexis can translate anything via the command line!
+	translate
+	    text to translate
+	        language to translate to or 'help' for a list of languages
 ------------------------------------------------------------------------------
 USE SPEECH COMMANDS
 	speak
