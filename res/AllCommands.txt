@@ -11,6 +11,7 @@ GENERAL
     Time
     download youtube video/download video/mp4
     video stats/video info/video information/video statistics
+    world clock
 ------------------------------------------------------------------------------
 WEBSITES
     # To open websites that are on our list, type 'open' followed by name of site.

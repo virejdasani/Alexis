@@ -7,3 +7,4 @@ speechrecognition
 pytest
 pytube~=12.1.0
 googletrans==4.0.0-rc1
+pytz
