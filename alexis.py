@@ -20,6 +20,8 @@ from utils import response_consts as resconst
 from utils.tictactoe import TicTacToe
 from utils.rock_paper_scissors import RockPaperScissors
 from utils.connect_four import ConnectFour
+#For currency
+from forex_python.converter import CurrencyRates
 
 import pytz
 
@@ -450,6 +452,25 @@ if __name__ == '__main__':
                             askForInput = False
                 except:
                     print(random.choice(resconst.errorResponse))
+
+
+            #currency conversion
+            elif "convert currency" in command:
+                try:
+                    # Get the source currency, target currency, and amount from the user
+                    source_currency = input("\033[33mEnter the source currency code (e.g., USD): ").upper()
+                    target_currency = input("\033[33mEnter the target currency code (e.g., EUR): ").upper()
+                    amount = float(input("\033[33mEnter the amount to convert: "))
+
+                    # Perform the currency conversion
+                    c = CurrencyRates()
+                    exchange_rate = c.get_rate(source_currency, target_currency)
+                    converted_amount = amount * exchange_rate
+
+                    # Print the result
+                    print(f"\033[36m{amount} {source_currency} is equal to {converted_amount} {target_currency}")
+                except Exception as e:
+                    print("\033[36mCurrency conversion failed! Error:", e)
 
 
             # HELP
