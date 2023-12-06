@@ -6,3 +6,4 @@ scipy
 speechrecognition
 pytest
 pytube~=12.1.0
+pytz
