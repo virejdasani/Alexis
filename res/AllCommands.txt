@@ -50,6 +50,12 @@ EMAIL
 	# Alexis can send emails via the command line!
 	send mail/email/e-mail
 ------------------------------------------------------------------------------
+TRANSLATE
+	# Alexis can translate anything via the command line!
+	translate
+	    text to translate
+	        language to translate to or 'help' for a list of languages
+------------------------------------------------------------------------------
 USE SPEECH COMMANDS
 	speak
 ------------------------------------------------------------------------------

@@ -13,6 +13,9 @@ import requests
 import smtplib
 # For getting password anonymously
 import getpass
+# For translator
+from googletrans import Translator, LANGUAGES
+
 from utils import response_consts as resconst
 from utils.tictactoe import TicTacToe
 from utils.rock_paper_scissors import RockPaperScissors
@@ -75,6 +78,19 @@ def upperToCapitalize(txtAct):
         return txtAct
     txtAct = (txtAct.lower()).capitalize()
     return txtAct
+
+# Function to perform language translation
+def translate_text(text, target_language='en'):
+    translator = Translator()
+    translation = translator.translate(text, dest=target_language)
+    return translation.text
+
+# Function to print available languages
+def print_available_languages():
+    print("\033[36mAvailable Languages:")
+    for code, language in LANGUAGES.items():
+        print(f"{code}: {language}")
+
 
 # MAIN LOOP
 if __name__ == '__main__':
@@ -290,6 +306,21 @@ if __name__ == '__main__':
                     print("\033[36mSent!")
                 except:
                     print(random.choice(resconst.errorResponse))
+            # Translator
+            elif "translate" in command:
+                try:
+                    text_to_translate = input("\033[33mEnter the text to be translated: ")
+                    target_language_input = input(
+                        "\033[33mEnter the target language code or type 'help' to see the list of available languages: ").lower()
+
+                    if target_language_input == "help":
+                        print_available_languages()
+                    else:
+                        target_language = target_language_input
+                        translated_text = translate_text(text_to_translate, target_language)
+                        print("\033[36mTranslated Text:", translated_text)
+                except Exception as e:
+                    print("\033[36mTranslation failed! Error: ", e)
 
             # API BASED
             # Bored
