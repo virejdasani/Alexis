@@ -408,6 +408,27 @@ if __name__ == '__main__':
                 except:
                     print(random.choice(resconst.errorResponse))
 
+            #Weather
+            elif "weather" in command:
+
+                # Note: This API key is associated with a free plan and may have usage limitations.
+                api_key = '42dd8eece458d27eca3c295e916b6c79' 
+                city = input("\033[33mEnter the city for weather information: ")
+
+                try:
+                    params = {"q": city, "appid": api_key, "units": "metric"}  
+                    response = requests.get('https://api.openweathermap.org/data/2.5/weather', params=params)
+                    data = response.json()
+                    if response.status_code == 200:
+                        temperature = data["main"]["temp"]
+                        weather_description = data["weather"][0]["description"]
+                        print (f'\033[36mWeather in {city}: {weather_description}, Temperature: {temperature}°C')
+                    else:
+                        print (f'\033[36mError retrieving weather data for {city}')
+                
+                except:
+                    print(random.choice(resconst.errorResponse))
+
             #Zip Code
             elif "zip" in command:
                 #Get information about a zip code
