@@ -15,10 +15,17 @@ import smtplib
 import psutil
 # For getting password anonymously
 import getpass
+# For translator
+from googletrans import Translator, LANGUAGES
+
 from utils import response_consts as resconst
 from utils.tictactoe import TicTacToe
 from utils.rock_paper_scissors import RockPaperScissors
 from utils.connect_four import ConnectFour
+#For currency
+from forex_python.converter import CurrencyRates
+
+import pytz
 
 '''
 RULES
@@ -75,6 +82,19 @@ def upperToCapitalize(txtAct):
         return txtAct
     txtAct = (txtAct.lower()).capitalize()
     return txtAct
+
+# Function to perform language translation
+def translate_text(text, target_language='en'):
+    translator = Translator()
+    translation = translator.translate(text, dest=target_language)
+    return translation.text
+
+# Function to print available languages
+def print_available_languages():
+    print("\033[36mAvailable Languages:")
+    for code, language in LANGUAGES.items():
+        print(f"{code}: {language}")
+
 
 # MAIN LOOP
 if __name__ == '__main__':
@@ -208,6 +228,15 @@ if __name__ == '__main__':
                 except Exception as e:
                     print("\033[36mVideo information retrieval failed! Error: ", e)
 
+            # world clock
+            elif "world clock" in command:
+                dispTimezone = input("Enter the location of time zone in like (Canada/Eastern, Europe/Brussels, Etc/GMT-2): ")
+                try: 
+                    dispTime = datetime.datetime.now(pytz.timezone(dispTimezone))
+                    print(f"current time in {dispTimezone}: {dispTime}")
+                except pytz.UnknownTimeZoneError:
+                    print("Can't find the place, try checking for typos or extra spaces")
+
             # WEB BASED
             # Open sites in browser
             elif "open " in command:
@@ -298,6 +327,21 @@ if __name__ == '__main__':
                     print("\033[36mSent!")
                 except:
                     print(random.choice(resconst.errorResponse))
+            # Translator
+            elif "translate" in command:
+                try:
+                    text_to_translate = input("\033[33mEnter the text to be translated: ")
+                    target_language_input = input(
+                        "\033[33mEnter the target language code or type 'help' to see the list of available languages: ").lower()
+
+                    if target_language_input == "help":
+                        print_available_languages()
+                    else:
+                        target_language = target_language_input
+                        translated_text = translate_text(text_to_translate, target_language)
+                        print("\033[36mTranslated Text:", translated_text)
+                except Exception as e:
+                    print("\033[36mTranslation failed! Error: ", e)
 
             # API BASED
             # Bored
@@ -385,6 +429,27 @@ if __name__ == '__main__':
                 except:
                     print(random.choice(resconst.errorResponse))
 
+            #Weather
+            elif "weather" in command:
+
+                # Note: This API key is associated with a free plan and may have usage limitations.
+                api_key = '42dd8eece458d27eca3c295e916b6c79' 
+                city = input("\033[33mEnter the city for weather information: ")
+
+                try:
+                    params = {"q": city, "appid": api_key, "units": "metric"}  
+                    response = requests.get('https://api.openweathermap.org/data/2.5/weather', params=params)
+                    data = response.json()
+                    if response.status_code == 200:
+                        temperature = data["main"]["temp"]
+                        weather_description = data["weather"][0]["description"]
+                        print (f'\033[36mWeather in {city}: {weather_description}, Temperature: {temperature}°C')
+                    else:
+                        print (f'\033[36mError retrieving weather data for {city}')
+                
+                except:
+                    print(random.choice(resconst.errorResponse))
+
             #Zip Code
             elif "zip" in command:
                 #Get information about a zip code
@@ -406,6 +471,25 @@ if __name__ == '__main__':
                             askForInput = False
                 except:
                     print(random.choice(resconst.errorResponse))
+
+
+            #currency conversion
+            elif "convert currency" in command:
+                try:
+                    # Get the source currency, target currency, and amount from the user
+                    source_currency = input("\033[33mEnter the source currency code (e.g., USD): ").upper()
+                    target_currency = input("\033[33mEnter the target currency code (e.g., EUR): ").upper()
+                    amount = float(input("\033[33mEnter the amount to convert: "))
+
+                    # Perform the currency conversion
+                    c = CurrencyRates()
+                    exchange_rate = c.get_rate(source_currency, target_currency)
+                    converted_amount = amount * exchange_rate
+
+                    # Print the result
+                    print(f"\033[36m{amount} {source_currency} is equal to {converted_amount} {target_currency}")
+                except Exception as e:
+                    print("\033[36mCurrency conversion failed! Error:", e)
 
 
             # HELP
