@@ -9,6 +9,7 @@ GENERAL
     show dog/cat
     Date
     Time
+    Vitals - displays the system stats like CPU usage, RAM usage and battery percentage
     download youtube video/download video/mp4
     video stats/video info/video information/video statistics
     convert currency - To convert currency, type 'convert currency' and follow the prompts
