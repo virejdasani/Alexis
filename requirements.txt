@@ -7,3 +7,4 @@ speechrecognition
 pytest
 pytube~=12.1.0
 forex-python
+pytz

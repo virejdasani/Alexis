@@ -20,6 +20,8 @@ from utils.connect_four import ConnectFour
 #For currency
 from forex_python.converter import CurrencyRates
 
+import pytz
+
 '''
 RULES
 '''
@@ -190,6 +192,15 @@ if __name__ == '__main__':
                     print("Age Restricted: ", yt.age_restricted)
                 except Exception as e:
                     print("\033[36mVideo information retrieval failed! Error: ", e)
+
+            # world clock
+            elif "world clock" in command:
+                dispTimezone = input("Enter the location of time zone in like (Canada/Eastern, Europe/Brussels, Etc/GMT-2): ")
+                try: 
+                    dispTime = datetime.datetime.now(pytz.timezone(dispTimezone))
+                    print(f"current time in {dispTimezone}: {dispTime}")
+                except pytz.UnknownTimeZoneError:
+                    print("Can't find the place, try checking for typos or extra spaces")
 
             # WEB BASED
             # Open sites in browser

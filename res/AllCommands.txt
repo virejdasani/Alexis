@@ -12,6 +12,7 @@ GENERAL
     download youtube video/download video/mp4
     video stats/video info/video information/video statistics
     convert currency - To convert currency, type 'convert currency' and follow the prompts
+    world clock
 ------------------------------------------------------------------------------
 WEBSITES
     # To open websites that are on our list, type 'open' followed by name of site.
