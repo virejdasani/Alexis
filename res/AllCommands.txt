@@ -6,6 +6,7 @@ GENERAL
     bored - will give you a random activity to do and/or open a relevant website if you need more information
     joke - displays a random joke
     fact - displays a random fact
+    advice - displays a piece of random advice
     show dog/cat
     Date
     Time
