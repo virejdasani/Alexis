@@ -6,6 +6,8 @@ import webbrowser
 import wikipedia
 import speech_recognition as sr
 import pytube
+import random
+from html import unescape
 
 # For request errors
 import requests
@@ -428,6 +430,50 @@ if __name__ == '__main__':
                 # In case of an error
                 except:
                     print(random.choice(resconst.errorResponse))
+
+
+            # Trivia
+            elif "trivia" in command:
+                # Try getting a Trivia question through an API
+                try:
+                    response = requests.get("https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple")
+                    data = response.json()
+
+                    if response.status_code == 200:
+                        result = data["results"][0]
+
+                        # Print the questions for the user to see
+                        question = unescape(result["question"])
+                        print(f"\033[36m{question}")
+                        
+                        # Print the options in a random order
+                        correct_answer =  unescape(result["correct_answer"])
+                        # print(correct_answer)
+                        options = [unescape(option) for option in result["incorrect_answers"]]
+                        options.append(correct_answer)
+                        random.shuffle(options)
+
+                        for i, option in enumerate(options):
+                            print(f"\033[36m\t({i+1}) {option}")
+
+                        # Request an option from the users
+                        my_answer_id = input("\033[33mEnter your answer (A number from 1-4): ")
+
+                        # Check if the answer is valid and correct
+                        my_answer_id = int(my_answer_id) # This line of code will fail if they enter an invalid number
+                        if my_answer_id not in range(1,5):
+                            print("\033[36mEnter a valid number between 1 and 4 next time...")
+                        elif correct_answer == options[my_answer_id-1]:
+                            print("\033[36mCongratulations, you are correct!!!")
+                        else:
+                            print(f"\033[36mGood attempt, the correct answer was \"{correct_answer}\". Try again next time")
+                        
+                    else:
+                        print (f'\033[36mError retrieving trivia data')
+                    
+                except Exception as e:
+                    print("\033[36mError in trivia execution!:", e)
+
 
             #Weather
             elif "weather" in command:

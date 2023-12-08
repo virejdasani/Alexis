@@ -6,6 +6,7 @@ GENERAL
     bored - will give you a random activity to do and/or open a relevant website if you need more information
     joke - displays a random joke
     fact - displays a random fact
+    trivia - displays a multiple choice trivia question to test your general knowledge
     show dog/cat
     Date
     Time
