@@ -7,6 +7,7 @@ GENERAL
     joke - displays a random joke
     fact - displays a random fact
     advice - displays a piece of random advice
+    trivia - displays a multiple choice trivia question to test your general knowledge
     show dog/cat
     Date
     Time
@@ -16,6 +17,7 @@ GENERAL
     convert currency - To convert currency, type 'convert currency' and follow the prompts
     world clock
     weather - get current weather information for a city
+    stock - get the current stock price of a company
 ------------------------------------------------------------------------------
 WEBSITES
     # To open websites that are on our list, type 'open' followed by name of site.
