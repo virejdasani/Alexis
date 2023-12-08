@@ -29,6 +29,7 @@ from forex_python.converter import CurrencyRates
 
 import pytz
 
+
 '''
 RULES
 '''
@@ -96,6 +97,22 @@ def print_available_languages():
     print("\033[36mAvailable Languages:")
     for code, language in LANGUAGES.items():
         print(f"{code}: {language}")
+
+api_key = '102ebf59c0124b54a9c2e239549bf2a3'
+
+def get_latest_news(api_key, country='us', category='general'):
+   base_url = "https://newsapi.org/v2/top-headlines"
+   params = {
+       'country': country,
+       'category': category,
+       'apiKey': api_key
+   }
+   response = requests.get(base_url, params=params)
+   if response.status_code == 200:
+       articles = response.json()['articles']
+       return articles[:5]  # Return top 5 news articles
+   else:
+       return f"Error: {response.status_code}"
 
 
 # MAIN LOOP
@@ -165,6 +182,13 @@ if __name__ == '__main__':
                 date_today = date.today()
                 date_today = date_today.strftime("%B %d, %Y")
                 print("\033[36mIt's", date_today)
+
+            # News
+            elif "news" in command:
+               news = get_latest_news(api_key)
+               for article in news:
+                   print(article['title'], "-", article['description'])
+
 
             # System information / vitals
             elif "vitals" in command:
