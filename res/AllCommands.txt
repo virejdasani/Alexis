@@ -15,6 +15,7 @@ GENERAL
     convert currency - To convert currency, type 'convert currency' and follow the prompts
     world clock
     weather - get current weather information for a city
+    stock - get the current stock price of a company
 ------------------------------------------------------------------------------
 WEBSITES
     # To open websites that are on our list, type 'open' followed by name of site.

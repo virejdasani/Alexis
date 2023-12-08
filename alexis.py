@@ -449,6 +449,32 @@ if __name__ == '__main__':
                 
                 except:
                     print(random.choice(resconst.errorResponse))
+            
+            # Stock Price
+            elif "stock" in command:
+                
+                # Ask the user for the stock symbol
+                stock_symbol = input("\033[33mEnter the stock symbol (e.g., AAPL): ").upper()
+
+                # Note: This API key is associated with a free plan and may have usage limitations.
+                api_key = "GT33YXVN95VQ810P"
+                base_url = "https://www.alphavantage.co/query"
+
+                try:
+                    # Making a request to the API
+                    response = requests.get(f'{base_url}?function=GLOBAL_QUOTE&symbol={stock_symbol}&apikey={api_key}')
+                    data = response.json()
+
+                    # Extracting and printing the stock price
+                    stock_info = data.get('Global Quote', {})
+                    if stock_info:
+                        stock_price = stock_info.get('05. price')
+                        print(f'\033[36mCurrent stock price of {stock_symbol}: ${stock_price}')
+                    else:
+                        print(f'\033[36mStock information not found for {stock_symbol}')
+
+                except Exception as e:
+                    print(f'\033[36mError retrieving stock data: {e}')
 
             #Zip Code
             elif "zip" in command:
