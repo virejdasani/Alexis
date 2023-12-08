@@ -430,6 +430,17 @@ if __name__ == '__main__':
                 # In case of an error
                 except:
                     print(random.choice(resconst.errorResponse))
+            
+            # Advice
+            elif "advice" in command:
+                # Try getting a piece of random advice
+                # uses Advice Slip API
+                try:
+                    r = requests.get("https://api.adviceslip.com/advice").json()
+                    print (r['slip']['advice'])
+                # In case of an error
+                except:
+                    print(random.choice(resconst.errorResponse))
 
 
             # Trivia
