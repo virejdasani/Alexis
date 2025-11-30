@@ -1,0 +1,2 @@
+docs
+forex_python
