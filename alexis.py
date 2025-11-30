@@ -48,6 +48,9 @@ RULES
 finished = False
 speechRecog = False
 
+# Variable to store the last displayed quote
+last_quote = {"text": "", "author": ""}
+
 
 # Inputs
 agreeInput = ["yes", "y", "sure", "yep", "ok", "why not"]
@@ -226,6 +229,83 @@ def get_latest_news(api_key, country='us', category='general'):
        return articles[:5]  # Return top 5 news articles
    else:
        return f"Error: {response.status_code}"
+
+def get_random_quote():
+    """
+    Function to fetch a random quote from ZenQuotes API
+    :return: A dictionary containing quote text and author, or None if error
+    """
+    try:
+        response = requests.get('https://zenquotes.io/api/random')
+        if response.status_code == 200:
+            data = response.json()
+            # ZenQuotes returns a list with one quote object
+            if isinstance(data, list) and len(data) > 0:
+                return {"text": data[0]['q'], "author": data[0]['a']}
+            else:
+                return None
+        else:
+            return None
+    except:
+        return None
+
+def save_quote_to_file(quote_text, quote_author, file="res/favorite_quotes.txt"):
+    """
+    Function to save a quote to the favorite quotes file
+    :param quote_text: The text of the quote
+    :param quote_author: The author of the quote
+    :param file: The file path to save to
+    """
+    try:
+        with open(file, "a") as f:
+            f.write(f"{quote_text}|{quote_author}\n")
+        return True
+    except:
+        return False
+
+def get_saved_quotes(file="res/favorite_quotes.txt"):
+    """
+    Function to retrieve all saved quotes from file
+    :param file: The file path to read from
+    :return: A list of dictionaries containing quote text and author
+    """
+    try:
+        with open(file, "r") as f:
+            lines = f.readlines()
+        quotes = []
+        for line in lines:
+            if "|" in line:
+                parts = line.strip().split("|")
+                quotes.append({"text": parts[0], "author": parts[1]})
+        return quotes
+    except FileNotFoundError:
+        # File doesn't exist yet
+        return []
+    except:
+        return []
+
+def delete_quote_from_file(quote_number, file="res/favorite_quotes.txt"):
+    """
+    Function to delete a quote from the favorite quotes file
+    :param quote_number: The number of the quote to delete (1-indexed)
+    :param file: The file path
+    :return: True if successful, False otherwise
+    """
+    try:
+        quotes = get_saved_quotes(file)
+        if quote_number < 1 or quote_number > len(quotes):
+            return False
+
+        # Remove the quote at the specified index
+        quotes.pop(quote_number - 1)
+
+        # Rewrite the file
+        with open(file, "w") as f:
+            for quote in quotes:
+                f.write(f"{quote['text']}|{quote['author']}\n")
+        return True
+    except:
+        return False
 
 
 # MAIN LOOP
@@ -614,6 +694,66 @@ if __name__ == '__main__':
                 # In case of an error
                 except:
                     print(random.choice(resconst.errorResponse))
+
+            # Quote
+            elif "quote" in command:
+                # Quote save: saves the last displayed quote
+                if "save" in command:
+                    if last_quote["text"] == "":
+                        print("\033[36mNo quote to save. Get a quote first!")
+                    else:
+                        if save_quote_to_file(last_quote["text"], last_quote["author"]):
+                            print("\033[36m✓ Quote saved to your collection!")
+                        else:
+                            print(random.choice(resconst.errorResponse))
+
+                # Quote list: shows all saved quotes
+                elif "list" in command:
+                    saved_quotes = get_saved_quotes()
+                    if len(saved_quotes) == 0:
+                        print("\033[36mYou don't have any saved quotes yet. Use 'quote save' to save a quote!")
+                    else:
+                        print("\033[36mYour saved quotes:")
+                        for i, quote in enumerate(saved_quotes):
+                            print(f"\033[36m{i+1}. \"{quote['text']}\" - {quote['author']}")
+
+                # Quote delete: removes a quote from collection
+                elif "delete" in command:
+                    try:
+                        # Extract the quote number from command
+                        quote_num = int(command.split()[-1])
+                        if delete_quote_from_file(quote_num):
+                            print("\033[36m✓ Quote deleted successfully!")
+                        else:
+                            print("\033[36mInvalid quote number. Use 'quote list' to see all quotes.")
+                    except ValueError:
+                        print("\033[36mPlease specify a quote number. Example: 'quote delete 1'")
+                    except:
+                        print(random.choice(resconst.errorResponse))
+
+                # Quote random: shows a random quote from saved collection
+                elif "random" in command:
+                    saved_quotes = get_saved_quotes()
+                    if len(saved_quotes) == 0:
+                        print("\033[36mYou don't have any saved quotes yet. Use 'quote save' to save a quote!")
+                    else:
+                        random_quote = random.choice(saved_quotes)
+                        print(f"\033[36m\"{random_quote['text']}\" - {random_quote['author']}")
+
+                # Quote (default): gets a random quote from API
+                else:
+                    try:
+                        quote_data = get_random_quote()
+                        if quote_data:
+                            # Store the quote for potential saving
+                            last_quote["text"] = quote_data["text"]
+                            last_quote["author"] = quote_data["author"]
+                            # Display the quote
+                            print(f"\033[36m\"{quote_data['text']}\" - {quote_data['author']}")
+                        else:
+                            print(random.choice(resconst.errorResponse))
+                    except:
+                        print(random.choice(resconst.errorResponse))
 
 
             # Trivia

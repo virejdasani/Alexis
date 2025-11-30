@@ -7,6 +7,11 @@ GENERAL
     joke - displays a random joke
     fact - displays a random fact
     advice - displays a piece of random advice
+    quote - displays a random inspirational quote
+    quote save - saves the last displayed quote to your personal collection
+    quote list - shows all your saved quotes
+    quote random - displays a random quote from your saved collection
+    quote delete [number] - deletes a specific quote from your collection (e.g., 'quote delete 1')
     trivia - displays a multiple choice trivia question to test your general knowledge
     show dog/cat
     Date
