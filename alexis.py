@@ -89,80 +89,78 @@ def upperToCapitalize(txtAct):
     txtAct = (txtAct.lower()).capitalize()
     return txtAct
 
-def obtain_aliases(file = "res/aliases.txt") -> str:
+def obtain_aliases(file_path: str = "res/aliases.txt") -> dict[str, str]:
     """
     This function returns every saved command alias.
     Args:
-        file (str, optional): The file where the aliases are stored. Defaults to "res/aliases.txt".
+        file_path (str, optional): The file where the aliases are stored. Defaults to "res/aliases.txt".
 
     Returns:
-        list:dict:str A list of dictionaries where the keys are the aliases and the valus ar the command that the alias points to.
+        dict[str, str]: A dictionary where the keys are the aliases and the values are the commands that the aliases point to.
     """
-    with open(file, "r") as f:
-        lines = f.readlines()
-    returnDictionnary = {}
-    for line in lines:
-        returnDictionnary[line.split("=")[0]] = line.split("=")[1]
-    return returnDictionnary
+    with open(file_path, "r") as file:
+        lines = file.readlines()
+    return {line.split("=")[0]: line.split("=")[1] for line in lines}
 
-def save_aliases(aliases, file = "res/aliases.txt") -> str:
+def save_aliases(aliases_dict, file_path: str = "res/aliases.txt") -> str:
     """
     This subroutine saves command aliases.
     Args:
-        aliases (list of dictionnaries): the aliases to be stored
-        file (str, optional): The file where the aliases are to be stored. Defaults to "res/aliases.txt".
+        aliases_dict (list of dictionaries): the aliases to be stored
+        file_path (str, optional): The file where the aliases are to be stored. Defaults to "res/aliases.txt".
     """
-    with open(file, "w") as f:
-        for k, v in aliases.items():
-            f.write(f"{k}={v}")
+    with open(file_path, "w") as file_handle:
+        for key, value in aliases_dict.items():
+            file_handle.write(f"{key}={value}\n")
+    return file_path
 
-def apply_aliases(command, file = "res/aliases.txt") -> str:
+def apply_aliases(user_command, file = "res/aliases.txt") -> str:
     """
-    This function returns the command passed as an argument with all aliases apllied
+    This function returns the command passed as an argument with all aliases applied
     Args:
-        command (str): The user command to aplly aliases to.
-        file (str, optional): The file in which the alliases are stored. Defaults to "res/aliases.txt".
+        user_command (str): The user command to apply aliases to.
+        file (str, optional): The file in which the aliases are stored. Defaults to "res/aliases.txt".
     Returns:
-        str: The command with all aliasess apllied
+        str: The command with all aliases applied
     """
-    aliases = obtain_aliases()
-    for k, v in aliases.items():
-        command = command.replace(k, v)
-    return command 
+    alias_dict = obtain_aliases()
+    for k, v in alias_dict.items():
+        user_command = user_command.replace(k, v)
+    return user_command
 
-def get_setting(setting: str, file = "res/settings.txt") -> str:
+def get_setting(setting: str, file_path: str = "res/settings.txt") -> str:
     """
     This function obtains a specific setting's value from the specified file.
     Args:
         setting (str): The seting you are looking for the value of.
-        file (str, optional): Settings file to consult (relative filepath as string required). Defaults to "res/setings.txt".
+        file_path (str, optional): Settings file to consult (relative filepath as string required). Defaults to "res/setings.txt".
 
     Returns:
         str: The value of the queried setting.
     """
-    with open(file, "r") as f:
-        settings = f.readlines()
+    with open(file_path, "r") as file:
+        settings = file.readlines()
     for line in settings:
         if line.split("=")[0] == setting.upper():
             return line.split("=")[1].strip("\n")
     return None
 
 def set_background_color(settingsFile = "res/settings.txt") -> str:
-    backgroundColor = "\033[1;32;40m"
+    bg_color = "\033[1;32;40m"
     colorMode = get_setting("COLORMODE", settingsFile)
     if colorMode == "dark":
-        backgroundColor = "\033[1;32;40m"
+        bg_color = "\033[1;32;40m"
     elif colorMode == "light":
-        backgroundColor = "\033[1;32;255m"
+        bg_color = "\033[1;32;255m"
     elif colorMode == "purple":
-        backgroundColor = "\033[1;32;45m"
+        bg_color = "\033[1;32;45m"
     elif colorMode == "red":
-        backgroundColor = "\033[1;32;41m"
+        bg_color = "\033[1;32;41m"
     elif colorMode == "green":
-        backgroundColor = "\033[1;32;42m"
+        bg_color = "\033[1;32;42m"
     elif colorMode == "blue":
-        backgroundColor = "\033[1;32;44m"
-    return backgroundColor
+        bg_color = "\033[1;32;44m"
+    return bg_color
 
 def execute_user_macro(macroNameAndArgs: str, file = "res/macros.txt"):
     """
@@ -176,29 +174,29 @@ def execute_user_macro(macroNameAndArgs: str, file = "res/macros.txt"):
     """
     macroName = macroNameAndArgs[0]
     arguments = macroNameAndArgs[1:]
-    with open(file, "r") as f:
-        text = f.read().split("</MACRO>")
+    with open(file, "r") as macro_file:
+        text = macro_file.read().split("</MACRO>")
     macros = {}
     # This large for loop tries to read the macros.txt file into macro names and arguments and macro code in a single dictionnary.
     for code in text:
-        currentMacroName =""
-        currentMacroContent = ""
-        nameObtained = False
+        current_macro_name =""
+        current_macro_content = ""
+        name_obtained = False
         for char in code:
             if char == ">":
-                nameObtained = True
-            elif char != "<" and not nameObtained:
-                currentMacroName += char
+                name_obtained = True
+            elif char != "<" and not name_obtained:
+                current_macro_name += char
             elif char != "<":
-                currentMacroContent += char
-        macroHeaders = currentMacroName.strip("\n").split(" ")
-        macros[macroHeaders[0].lower()] = currentMacroContent.strip("\n"), macroHeaders[1:]
+                current_macro_content += char
+        macro_headers = current_macro_name.strip("\n").split(" ")
+        macros[macro_headers[0].lower()] = current_macro_content.strip("\n"), macro_headers[1:]
     if macroName in macros.keys():
         # This is the part that handles passing the arguments to the macro.
-        macroArgs = {}
-        for argumentIndex in range(len(arguments)):
-            macroArgs[macros[macroName][1][argumentIndex]] = arguments[argumentIndex]
-        return exec(macros[macroName][0], macroArgs)
+        macro_args = {}
+        for argument_index in range(len(arguments)):
+            macro_args[macros[macroName][1][argument_index]] = arguments[argument_index]
+        return exec(macros[macroName][0], macro_args)
     else:
         return "Sorry, I don't seem to remember what this macro is."
 
@@ -216,19 +214,19 @@ def print_available_languages():
 
 news_api_key = '102ebf59c0124b54a9c2e239549bf2a3'
 
-def get_latest_news(api_key, country='us', category='general'):
-   base_url = "https://newsapi.org/v2/top-headlines"
-   params = {
-       'country': country,
-       'category': category,
-       'apiKey': api_key
-   }
-   response = requests.get(base_url, params=params)
-   if response.status_code == 200:
-       articles = response.json()['articles']
-       return articles[:5]  # Return top 5 news articles
-   else:
-       return f"Error: {response.status_code}"
+def get_latest_news(api_key_local, country='us', category='general'):
+    base_url_local = "https://newsapi.org/v2/top-headlines"
+    params_dict = {
+        'country': country,
+        'category': category,
+        'apiKey': api_key_local
+    }
+    news_response = requests.get(base_url_local, params=params_dict)
+    if news_response.status_code == 200:
+        articles = news_response.json()['articles']
+        return articles[:5]  # Return top 5 news articles
+    else:
+        return f"Error: {news_response.status_code}"
 
 def get_random_quote():
     """
